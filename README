@@ -1,0 +1,35 @@
+Name: Greg Gettings
+
+Clemson Email Address: ggettin@g.clemson.edu
+
+Project no: 3
+
+Project due date: Fri. March 10. 8:00 AM
+
+Project description: Animation with parallax scrolling and single, multiFrame, and two-way multiframe sprites. Mine features a number of sharks, jellyfish, and bubbles in an underwater scene.
+
+The easiest part of this project: Completing the C++ centric tasks.
+
+Problems that I had in completing this project:
+
+	- Running this on my Mac works perfectly. However when running on my Linux VirtualBox it displays my shark sprites as white boxes. The video I've included was made on my Mac and shows it working normally. I've also told Dr. Malloy about my problem.
+
+
+Added Features:
+	- Every press of the ‘B’ key spawns new a bubble
+	- Created two new class, Queue and twoWaySprite
+	- modified constructors of all drawables to make locations and velocities random within the limits defined by the user in the XML and size of the world
+
+
+
+
+Sources for sprites/backgrounds:
+	Shark: http://z11.invisionfree.com/darksea/ar/t163.htm
+
+	JellyFish: https://www.spriters-resource.com/game_boy_advance/spongebobsquarepantssupersponge/sheet/26008/
+
+	Bubble: http://www.gimptalk.com/index.php?/topic/44484-make-a-bubble-brush/
+
+	Sea background: http://www.powerpointhintergrund.com/ppt-image/sea-background-1966.html
+
+	Ocean floor: https://clipartfest.com/download/c86f0b4a38a61c40a365a3012b123707906863a6.html

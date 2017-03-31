@@ -1,0 +1,126 @@
+<?xml version = "1.0"?>
+<GameData>
+<!-- screenTitle is also used to identify you and your animation.
+     So make sure to include your name as part of the screenTitle -->
+<screenTitle>Star Animation</screenTitle>
+<maxStringSize>50</maxStringSize>
+
+<frameCapOn>true</frameCapOn>
+<period>17</period>
+
+<queueMax>100</queueMax>
+
+<maxFrames>400</maxFrames>
+<username>ggettin</username>
+
+<view>
+  <width>960</width>
+  <height>600</height>
+</view>
+
+<world>
+  <width>1920</width>
+  <height>700</height>
+</world>
+
+<water>
+  <file>images/Seaback.jpg</file>
+  <factor>10</factor>
+  <transparency>false</transparency>
+</water>
+
+<coral>
+  <file>images/floorFore.png</file>
+  <factor>1</factor>
+  <transparency>false</transparency>
+</coral>
+
+<font name="font">
+  <file>fonts/arial.ttf</file>
+  <size>24</size>
+  <red>255</red>
+  <green>255</green>
+  <blue>255</blue>
+  <alpha>0</alpha>
+</font>
+
+<sharkLeft>
+  <file>images/sharkSwimLeft.png</file>
+  <startLoc x="120" y="140"/>
+  <frames>3</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>-200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</sharkLeft>
+
+<sharkRight>
+  <file>images/sharkSwimRight.png</file>
+  <startLoc x="120" y="140"/>
+  <frames>3</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>-200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</sharkRight>
+
+<shark>
+  <startLoc x="120" y="140"/>
+  <frames>3</frames>
+  <count>10</count>
+  <frameInterval>200</frameInterval>
+  <speed>
+    <X min="-250" max="250"  />
+    <Y min="-30" max="30"  />
+  </speed>
+  <transparency>true</transparency>
+</shark>
+
+<jellyFish>
+  <file>images/jellyFish.png</file>
+  <startLoc x="120" y="140"/>
+  <frames>8</frames>
+  <count>10</count>
+  <frameInterval>200</frameInterval>
+  <speed>
+    <X min="-175" max="175"  />
+    <Y min="-175" max="175"  />
+  </speed>
+  <transparency>true</transparency>
+</jellyFish>
+
+<bubble>
+  <file>images/bubble.png</file>
+  <count>17</count>
+  <speed>
+    <X min="-175" max="175"  />
+    <Y min="-175" max="175"  />
+  </speed>
+  <maxSpeedX>175</maxSpeedX>
+  <maxSpeedY>175</maxSpeedY>
+  <transparency>true</transparency>
+</bubble>
+
+
+<star>
+  <file>images/yellowstar32.png</file>
+  <maxSpeedX>-175</maxSpeedX>
+  <maxSpeedY>-175</maxSpeedY>
+  <transparency>true</transparency>
+</star>
+
+<greenorb>
+  <file>images/greenball.bmp</file>
+  <startLoc x="320" y="240"/>
+  <speedX>175</speedX>
+  <speedY>175</speedY>
+  <transparency>true</transparency>
+</greenorb>
+
+<context>
+	<width>960</width>
+	<height>600</height>
+	<delay>1000</delay>
+</context>
+
+</GameData>
