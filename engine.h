@@ -5,6 +5,7 @@
 #include "clock.h"
 #include "world.h"
 #include "viewport.h"
+#include "scaledSprite.h"
 
 class Engine {
 public:
@@ -24,10 +25,12 @@ private:
   Viewport& viewport;
 
   std::vector<Drawable*> sprites;
+  std::vector<ScaledSprite*> extras;
 
   int currentSprite;
   bool makeVideo;
 
+  void makeExtras();
   void draw() const;
   void update(Uint32);
 

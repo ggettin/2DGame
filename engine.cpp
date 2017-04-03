@@ -10,6 +10,15 @@
 #include "twoWaySprite.h"
 #include "scaledSprite.h"
 
+class ScaleComp {
+public:
+  bool operator()(const ScaledSprite* lhs, const ScaledSprite* rhs) const {
+    return lhs->getScale() < rhs->getScale();
+  }
+};
+
+
+
 Engine::~Engine() {
   std::cout << "Terminating program" << std::endl;
   // for(auto sprite : sprites){
@@ -36,9 +45,7 @@ Engine::Engine() :
 
   makeVideo( false ){
 
-  for( int i = 0; i < Gamedata::getInstance().getXmlInt("bubble/count"); i++){
-    sprites.push_back( new ScaledSprite("bubble") );
-  }
+  makeExtras();
 
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
     sprites.push_back( new MultiSprite("jellyFish") );
@@ -50,8 +57,26 @@ Engine::Engine() :
   std::cout << "Loading complete" << std::endl;
 }
 
+
+void Engine::makeExtras(){
+  int count = Gamedata::getInstance().getXmlInt("bubble/count");
+  extras.reserve(count);
+  for( int i = 0; i < count; i++){
+    extras.push_back( new ScaledSprite("bubble") );
+  }
+  sort(extras.begin(), extras.end(), ScaleComp());
+}
+
 void Engine::draw() const {
   water.draw();
+  size_t i = 0;
+  while (i < extras.size()){
+    if(extras[i]->getScale() >= 0.8){
+      break;
+    }
+    extras[i]->draw();
+    i++;
+  }
   coral.draw();
   std::stringstream strm;
   int fps = clock.getFps();
@@ -65,6 +90,10 @@ void Engine::draw() const {
   io.writeText(strm.str(), 30, 90);
 
   for(auto* s : sprites) s->draw();
+  while(i < extras.size()){
+    extras[i]->draw();
+    i++;
+  }
 
   viewport.draw();
   SDL_RenderPresent(renderer);
@@ -72,6 +101,7 @@ void Engine::draw() const {
 
 void Engine::update(Uint32 ticks) {
   for(auto* s : sprites) s->update(ticks);
+  for(auto* e : extras) e->update(ticks);
   water.update();
   coral.update();
   viewport.update(); // always update viewport last
@@ -113,7 +143,7 @@ void Engine::play() {
           switchSprite();
         }
         if ( keystate[SDL_SCANCODE_B] ) {
-          sprites.push_back( new Sprite("bubble") );
+          extras.push_back( new ScaledSprite("bubble") );
         }
         if (keystate[SDL_SCANCODE_F4] && !makeVideo) {
           std::cout << "Initiating frame capture" << std::endl;

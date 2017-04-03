@@ -16,7 +16,7 @@ ScaledSprite::ScaledSprite(const std::string& name) :
                         Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
                         Gamedata::getInstance().getXmlInt(name + "/speed/Y/max")))
            ),
-  scale( Gamedata::getInstance().getRandInRange(
+  scale( Gamedata::getInstance().getRandFloat(
     Gamedata::getInstance().getXmlFloat(name + "/scale/min"),
     Gamedata::getInstance().getXmlFloat(name + "/scale/max") )
   ),

@@ -91,13 +91,13 @@
 
 <bubble>
   <file>images/bubble.png</file>
-  <count>17</count>
+  <count>50</count>
   <speed>
     <X min="-175" max="175"  />
     <Y min="-175" max="175"  />
   </speed>
   <scale>
-    <min>0.5</min>
+    <min>0.4</min>
     <max>1.2</max>
   </scale>
   <maxSpeedX>175</maxSpeedX>
