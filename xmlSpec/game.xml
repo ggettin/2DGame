@@ -96,6 +96,7 @@
     <X min="-175" max="175"  />
     <Y min="-175" max="175"  />
   </speed>
+  <scale>1.0</scale>
   <maxSpeedX>175</maxSpeedX>
   <maxSpeedY>175</maxSpeedY>
   <transparency>true</transparency>

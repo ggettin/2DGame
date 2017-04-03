@@ -8,6 +8,7 @@
 #include "engine.h"
 #include "frameGenerator.h"
 #include "twoWaySprite.h"
+#include "scaledSprite.h"
 
 Engine::~Engine() {
   std::cout << "Terminating program" << std::endl;
@@ -35,7 +36,7 @@ Engine::Engine() :
 
   makeVideo( false ){
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("bubble/count"); i++){
-    sprites.push_back( new Sprite("bubble") );
+    sprites.push_back( new ScaledSprite("bubble") );
   }
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
     sprites.push_back( new MultiSprite("jellyFish") );

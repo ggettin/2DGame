@@ -22,6 +22,7 @@ OBJS = \
 	Queue.o \
 	clock.o \
 	engine.o \
+	scaledSprite.o \
 	twoWaySprite.o \
 	main.o
 EXEC = run
