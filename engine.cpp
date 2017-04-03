@@ -35,9 +35,11 @@ Engine::Engine() :
   currentSprite(-1),
 
   makeVideo( false ){
+
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("bubble/count"); i++){
     sprites.push_back( new ScaledSprite("bubble") );
   }
+
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
     sprites.push_back( new MultiSprite("jellyFish") );
   }

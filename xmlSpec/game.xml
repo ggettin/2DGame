@@ -2,7 +2,7 @@
 <GameData>
 <!-- screenTitle is also used to identify you and your animation.
      So make sure to include your name as part of the screenTitle -->
-<screenTitle>Star Animation</screenTitle>
+<title>Star Animation</title>
 <maxStringSize>50</maxStringSize>
 
 <frameCapOn>true</frameCapOn>
@@ -25,7 +25,7 @@
 
 <water>
   <file>images/Seaback.jpg</file>
-  <factor>10</factor>
+  <factor>2</factor>
   <transparency>false</transparency>
 </water>
 
@@ -96,7 +96,10 @@
     <X min="-175" max="175"  />
     <Y min="-175" max="175"  />
   </speed>
-  <scale>1.0</scale>
+  <scale>
+    <min>0.5</min>
+    <max>1.2</max>
+  </scale>
   <maxSpeedX>175</maxSpeedX>
   <maxSpeedY>175</maxSpeedY>
   <transparency>true</transparency>

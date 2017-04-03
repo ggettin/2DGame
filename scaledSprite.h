@@ -17,6 +17,7 @@ public:
   Vector2f makeLocation();
 private:
   double scale;
+  SDL_Surface *scaledSurface;
   const Frame * frame;
   int worldWidth;
   int worldHeight;

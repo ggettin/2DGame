@@ -23,23 +23,6 @@ FrameFactory::~FrameFactory() {
       delete frame;
     }
   }
-
-  /*std::map<std::string, std::vector<SDL_Texture*> >::iterator
-    textures = multiTextures.begin();
-  while ( textures != multiTextures.end() ) {
-    for (unsigned int i = 0; i < textures->second.size(); ++i) {
-      SDL_DestroyTexture( textures->second[i] );
-    }
-    ++textures;
-  }
-  std::map<std::string, std::vector<Frame*> >::iterator
-    frames = multiFrames.begin();
-  while ( frames != multiFrames.end() ) {
-    for (unsigned int i = 0; i < frames->second.size(); ++i) {
-      delete frames->second[i];
-    }
-    ++frames;
-  }*/
 }
 
 Frame* FrameFactory::getFrame(const std::string& name) {
@@ -56,6 +39,7 @@ Frame* FrameFactory::getFrame(const std::string& name) {
     return it->second;
   }
 }
+
 
 
 std::vector<Frame*> FrameFactory::getFrames(const std::string& name) {

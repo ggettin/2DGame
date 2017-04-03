@@ -16,7 +16,10 @@ ScaledSprite::ScaledSprite(const std::string& name) :
                         Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
                         Gamedata::getInstance().getXmlInt(name + "/speed/Y/max")))
            ),
-  scale( Gamedata::getInstance().getXmlFloat("scale") ),
+  scale( Gamedata::getInstance().getRandInRange(
+    Gamedata::getInstance().getXmlFloat(name + "/scale/min"),
+    Gamedata::getInstance().getXmlFloat(name + "/scale/max") )
+  ),
   frame( RenderContext::getInstance()->getFrame(name) ),
   worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("world/height")),
@@ -26,6 +29,7 @@ ScaledSprite::ScaledSprite(const std::string& name) :
 
 ScaledSprite::ScaledSprite(const ScaledSprite& s) :
   Drawable(s),
+  scale(s.scale),
   frame(s.frame),
   worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("world/height")),
@@ -44,7 +48,7 @@ ScaledSprite& ScaledSprite::operator=(const ScaledSprite& rhs) {
 }
 
 void ScaledSprite::draw() const {
-  frame->draw(getX(), getY());
+  frame->draw(getX(), getY(), scale);
 }
 
 void ScaledSprite::update(Uint32 ticks) {

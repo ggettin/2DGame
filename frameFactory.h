@@ -15,6 +15,7 @@ public:
   std::vector<Frame*> getFrames(const std::string&);
 
 
+
 private:
   static FrameFactory* instance;
   const Gamedata& gdata;
@@ -24,8 +25,8 @@ private:
   std::map<std::string, std::vector<SDL_Texture*> > multiTextures;
   std::map<std::string, std::vector<Frame*> > multiFrames;
 
-  FrameFactory() : 
-    gdata( Gamedata::getInstance() ), 
+  FrameFactory() :
+    gdata( Gamedata::getInstance() ),
     textures(),
     frames(),
     multiTextures(),

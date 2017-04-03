@@ -16,9 +16,12 @@ public:
   Frame* getFrame(const std::string& n) {
     return factory->getFrame(n);
   }
+  
   std::vector<Frame*> getFrames(const std::string& n) {
     return factory->getFrames(n);
   }
+
+
 private:
   static RenderContext* instance;
   SDL_Window* window;
