@@ -31,14 +31,38 @@ Player::Player(const Player& s) :
   frameDelay(s.frameDelay),
   initialVelocity(s.initialVelocity),
   slowDown(s.slowDown)
-
   { }
 
-void twoWaySprite::draw() const {
-  frames[currentFrame]->draw(getX(), getY());
+void Player::stop(){
+  setVelocityX(slowDown*getVelocityX());
+  setVelocityY(0);
 }
 
-void twoWaySprite::update(Uint32 ticks) {
+void Player::right(){
+  if( getX() < worldWidth-frameWidth){
+    setVelocityX(initialVelocity[0]);
+  }
+  frames = framesRight;
+}
+void Player::left(){
+  if( getX() > 0){
+    setVelocityX(-initialVelocity[0]);
+  }
+  frames = framesLeft;
+}
+void Player::up(){
+  if( getY() > 0){
+    setVelocityY(-initialVelocity[1]);
+  }
+}
+void Player::down(){
+  if( getY() < worldHeight-frameHeight){
+    setVelocityY(initialVelocity[1]);
+  }
+}
+
+
+void Player::update(Uint32 ticks) {
   advanceFrame(ticks);
 
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
