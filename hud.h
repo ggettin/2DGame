@@ -1,6 +1,7 @@
 #include <iostream>
-#include "gamedata.h"
 #include "renderContext.h"
+
+
 
 
 class HUD{
@@ -9,10 +10,12 @@ public:
   HUD();
   ~HUD();
 
+  void drawHUD();
+
 private:
 
   SDL_Rect *rect;
-  RenderContext *renderContext;
+  const RenderContext *renderContext;
 
 
 };
