@@ -6,6 +6,8 @@
 #include "world.h"
 #include "viewport.h"
 #include "scaledSprite.h"
+#include "twoWaySprite.h"
+#include "Player.h"
 
 class Engine {
 public:
@@ -24,7 +26,7 @@ private:
   World coral;
   Viewport& viewport;
 
-  std::vector<Drawable*> sprites;
+  std::vector<Player*> sprites;
   std::vector<ScaledSprite*> extras;
   std::vector<Drawable*> nontracker_sprite;
 

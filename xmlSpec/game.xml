@@ -49,6 +49,8 @@
   <frames>3</frames>
   <count>2</count>
   <frameInterval>200</frameInterval>
+  <minFrameDelay>5</minFrameDelay>
+  <slowDown>5</slowDown>
   <speed>
     <X min="-250" max="30"  />
     <Y min="-150" max="150"  />

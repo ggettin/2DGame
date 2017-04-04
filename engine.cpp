@@ -24,7 +24,7 @@ Engine::~Engine() {
   // for(auto sprite : sprites){
   //   delete sprite;
   // }
-  std::vector<Drawable*>::iterator it = sprites.begin();
+  std::vector<Player*>::iterator it = sprites.begin();
 
   while ( it != sprites.end() ) {
     delete *it;
@@ -57,7 +57,7 @@ Engine::Engine() :
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
     nontracker_sprite.push_back( new twoWaySprite("shark") );
   }
-  sprites.push_back( new twoWaySprite("scuba") );
+  sprites.push_back( new Player("scuba") );
 
   switchSprite();
   std::cout << "Loading complete" << std::endl;
@@ -167,9 +167,13 @@ void Engine::play() {
 
       if (keystate[SDL_SCANCODE_A] && keystate[SDL_SCANCODE_D]){
         std::cout << "a & d" << std::endl;
+        sprites[0]->stop();
+
 
       } else if (keystate[SDL_SCANCODE_A]){
         std::cout << "a " << std::endl;
+                sprites[0]->left();
+
 
       } else if (keystate[SDL_SCANCODE_D]){
         std::cout << "d" << std::endl;
