@@ -155,7 +155,7 @@ void Engine::play() {
         //   clock.toggleSloMo();
         // }
         if ( keystate[SDL_SCANCODE_T] ) {
-          //switchSprite();
+          switchSprite();
         }
         if ( keystate[SDL_SCANCODE_B] ) {
           extras.push_back( new ScaledSprite("bubble") );
