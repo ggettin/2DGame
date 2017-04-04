@@ -24,7 +24,7 @@ Engine::~Engine() {
   // for(auto sprite : sprites){
   //   delete sprite;
   // }
-  std::vector<Player*>::iterator it = sprites.begin();
+  std::vector<Drawable*>::iterator it = sprites.begin();
 
   while ( it != sprites.end() ) {
     delete *it;
@@ -172,8 +172,7 @@ void Engine::play() {
 
       } else if (keystate[SDL_SCANCODE_A]){
         std::cout << "a " << std::endl;
-                sprites[0]->left();
-
+        sprites[0]->left();
 
       } else if (keystate[SDL_SCANCODE_D]){
         std::cout << "d" << std::endl;
