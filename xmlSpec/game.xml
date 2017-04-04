@@ -60,7 +60,7 @@
 </Pepe>
 
 <PepeLeft>
-  <file>images/scubaLeft.png</file>
+  <file>images/scubaLeftBigger.png</file>
   <startLoc x="120" y="75"/>
   <frames>6</frames>
   <frameInterval>59</frameInterval>
@@ -70,7 +70,7 @@
 </PepeLeft>
 
 <PepeRight>
-  <file>images/scubaRight.png</file>
+  <file>images/scubaRightBigger.png</file>
   <startLoc x="120" y="75"/>
   <frames>6</frames>
   <frameInterval>59</frameInterval>
