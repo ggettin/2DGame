@@ -27,6 +27,7 @@ private:
   World coral;
   Viewport& viewport;
   HUD *hud;
+  bool hudOn;
 
   std::vector<Drawable*> sprites;
   std::vector<ScaledSprite*> extras;
