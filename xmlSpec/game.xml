@@ -50,8 +50,8 @@
   <count>2</count>
   <frameInterval>200</frameInterval>
   <minFrameDelay>5</minFrameDelay>
-  <initialVelocity>5</initialVelocity>
-  <slowDown>5</slowDown>
+  <initialVelocity x="200" y="0"/>
+  <slowDown>0</slowDown>
   <speed>
     <X min="-250" max="30"  />
     <Y min="-150" max="150"  />

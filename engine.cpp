@@ -48,6 +48,7 @@ Engine::Engine() :
   nontracker_sprite(),
   player("scuba"),
   currentSprite(-1),
+  
 
 
   makeVideo( false ){
