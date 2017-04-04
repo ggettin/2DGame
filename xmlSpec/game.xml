@@ -44,7 +44,7 @@
   <alpha>0</alpha>
 </font>
 
-<scuba>
+<Pepe>
   <startLoc x="120" y="75"/>
   <frames>3</frames>
   <count>2</count>
@@ -57,9 +57,9 @@
     <Y min="-150" max="150"  />
   </speed>
   <transparency>true</transparency>
-</scuba>
+</Pepe>
 
-<scubaLeft>
+<PepeLeft>
   <file>images/scubaLeft.png</file>
   <startLoc x="120" y="75"/>
   <frames>6</frames>
@@ -67,9 +67,9 @@
   <speedX>-200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
-</scubaLeft>
+</PepeLeft>
 
-<scubaRight>
+<PepeRight>
   <file>images/scubaRight.png</file>
   <startLoc x="120" y="75"/>
   <frames>6</frames>
@@ -77,7 +77,7 @@
   <speedX>-200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
-</scubaRight>
+</PepeRight>
 
 
 

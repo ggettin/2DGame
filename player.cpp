@@ -16,7 +16,7 @@ Player::Player( const std::string& name) :
     Vector2f(Gamedata::getInstance().getXmlInt(name+"/speed/X/max"),
              Gamedata::getInstance().getXmlInt(name+"/speed/Y/max"))
     ),
-  frames( RenderContext::getInstance()->getFrames("scubaRight") ),
+  frames( RenderContext::getInstance()->getFrames("PepeRight") ),
   framesLeft( RenderContext::getInstance()->getFrames(name+"Left") ),
   framesRight( RenderContext::getInstance()->getFrames(name+"Right") ),
   currentFrame(0),

@@ -62,7 +62,7 @@ Engine::Engine() :
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
     //sprites.push_back( new twoWaySprite("shark") );
   }
- sprites.push_back( new Player("scuba") );
+ sprites.push_back( new Player("Pepe") );
 
   switchSprite();
   std::cout << "Loading complete" << std::endl;
@@ -93,9 +93,9 @@ void Engine::draw() const {
   int fps = clock.getFps();
 
 
-  SDL_Color color = {0xff, 0, 0, 0};
-  io.writeText("Greg Gettings & Sydney Paul", color, 410, 30);
-  io.writeText("Pepe the Scuba Diver", color, 395, 60);
+  SDL_Color color = {0xff, 0xff, 0xff, 0};
+  io.writeText("Greg Gettings & Sydney Paul", color, 50, 400);
+  io.writeText("Pepe the Scuba Diver", color, 50, 425);
 
 
   for(auto* s : sprites) s->draw();
