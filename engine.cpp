@@ -92,12 +92,6 @@ void Engine::draw() const {
 
   int fps = clock.getFps();
 
-
-  SDL_Color color = {0xff, 0xff, 0xff, 0};
-  io.writeText("Greg Gettings & Sydney Paul", color, 50, 400);
-  io.writeText("Pepe the Scuba Diver", color, 50, 425);
-
-
   for(auto* s : sprites) s->draw();
   while(i < extras.size()){
     extras[i]->draw();
@@ -107,16 +101,39 @@ void Engine::draw() const {
 
   //player.draw();
 
+
+  SDL_Color color = {0xff, 0xff, 0xff, 0};
+  io.writeText("Greg Gettings & Sydney Paul", color, 20, 440);
+  //io.writeText("Pepe the Scuba Diver", color, 50, 425);
+
+
+
+
   if (hudOn) {
 
     hud->drawHUD();
-    viewport.draw();
+    //viewport.draw();
     std::stringstream strm;
-    strm << "fps: " << fps;
-    io.writeText(strm.str(), 30, 60);
+    strm << "Pepe the Scuba Diver";
+    io.writeText(strm.str(), 20, 20);
     strm.str(std::string());
-    strm << "avg. fps: " << clock.calcAvgFPS(fps);
-    io.writeText(strm.str(), 30, 90);
+    strm << "Seconds: " << clock.getSeconds();
+    io.writeText(strm.str(), 20, 50);
+    strm.str(std::string());
+    strm << "Avg. fps: " << clock.calcAvgFPS(fps);
+    io.writeText(strm.str(), 20, 80);
+    strm.str(std::string());
+    strm << "Up: W" ;
+    io.writeText(strm.str(), 20, 110);
+    strm.str(std::string());
+    strm << "Left: A" ;
+    io.writeText(strm.str(), 20, 140);
+    strm.str(std::string());
+    strm << "Down: S" ;
+    io.writeText(strm.str(), 150, 110);
+    strm.str(std::string());
+    strm << "Right: D" ;
+    io.writeText(strm.str(), 150, 140);
 
   }
 

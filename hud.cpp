@@ -6,8 +6,8 @@ HUD::HUD() :
   renderContext( RenderContext::getInstance()){
     rect->x = 12;
     rect->y = 16;
-    rect->w = 200;
-    rect->h = 150;
+    rect->w = 245;
+    rect->h = 155;
 }
 
 

@@ -38,9 +38,9 @@
 <font name="font">
   <file>fonts/arial.ttf</file>
   <size>24</size>
-  <red>255</red>
-  <green>255</green>
-  <blue>255</blue>
+  <red>142</red>
+  <green>1</green>
+  <blue>138</blue>
   <alpha>0</alpha>
 </font>
 
