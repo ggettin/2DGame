@@ -24,6 +24,7 @@ OBJS = \
 	engine.o \
 	scaledSprite.o \
 	twoWaySprite.o \
+	Player.o \
 	main.o
 EXEC = run
 
