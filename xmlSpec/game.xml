@@ -145,6 +145,7 @@
     <min>0.4</min>
     <max>1.2</max>
   </scale>
+  <additions>10</additions>
   <maxSpeedX>175</maxSpeedX>
   <maxSpeedY>175</maxSpeedY>
   <transparency>true</transparency>

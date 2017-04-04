@@ -209,7 +209,12 @@ void Engine::play() {
         }
 
         if ( keystate[SDL_SCANCODE_B] ) {
-          extras.push_back( new Sprite("bubble") );
+          int additions = Gamedata::getInstance().getXmlInt("bubble/additions");
+          for (int i = 0; i < additions; i++){
+            extras.push_back( new Sprite("bubble") );
+          }
+          sort(extras.begin(), extras.end(), ScaleComp());
+
         }
         if (keystate[SDL_SCANCODE_F4] && !makeVideo) {
           std::cout << "Initiating frame capture" << std::endl;
