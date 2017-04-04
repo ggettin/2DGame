@@ -14,7 +14,10 @@ Sprite::Sprite(const std::string& name) :
                         Gamedata::getInstance().getXmlInt(name + "/speed/X/max")),
                     Gamedata::getInstance().getRandInRange(
                         Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
-                        Gamedata::getInstance().getXmlInt(name + "/speed/Y/max")))
+                        Gamedata::getInstance().getXmlInt(name + "/speed/Y/max"))),
+          Gamedata::getInstance().getRandFloat(
+                    Gamedata::getInstance().getXmlFloat(name + "/scale/min"),
+                    Gamedata::getInstance().getXmlFloat(name + "/scale/max") )
            ),
   frame( RenderContext::getInstance()->getFrame(name) ),
   worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
@@ -42,8 +45,11 @@ Sprite& Sprite::operator=(const Sprite& rhs) {
   return *this;
 }
 
+// void Sprite::draw() const {
+//   frame->draw(getX(), getY());
+// }
 void Sprite::draw() const {
-  frame->draw(getX(), getY());
+  frame->draw(getX(), getY(), getScale());
 }
 
 void Sprite::update(Uint32 ticks) {

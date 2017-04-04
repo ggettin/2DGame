@@ -21,7 +21,10 @@ twoWaySprite::twoWaySprite( const std::string& name) :
 								 Gamedata::getInstance().getXmlInt(name + "/speed/X/max")),
 						 Gamedata::getInstance().getRandInRange(
 								 Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
-								 Gamedata::getInstance().getXmlInt(name + "/speed/Y/max")))
+								 Gamedata::getInstance().getXmlInt(name + "/speed/Y/max"))),
+		Gamedata::getInstance().getRandFloat(
+						 	    Gamedata::getInstance().getXmlFloat(name + "/scale/min"),
+						 	    Gamedata::getInstance().getXmlFloat(name + "/scale/max") )
 		),
   frames( RenderContext::getInstance()->getFrames("sharkLeft") ),
 	framesLeft( RenderContext::getInstance()->getFrames(name+"Left") ),
@@ -51,8 +54,12 @@ twoWaySprite::twoWaySprite(const twoWaySprite& s) :
   frameHeight( s.frameHeight )
   { }
 
+// void twoWaySprite::draw() const {
+//   frames[currentFrame]->draw(getX(), getY());
+// }
+
 void twoWaySprite::draw() const {
-  frames[currentFrame]->draw(getX(), getY());
+  frames[currentFrame]->draw(getX(), getY(), getScale());
 }
 
 void twoWaySprite::update(Uint32 ticks) {

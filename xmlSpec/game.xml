@@ -56,6 +56,10 @@
     <X min="-250" max="150"  />
     <Y min="-150" max="150"  />
   </speed>
+  <scale>
+    <min>1.2</min>
+    <max>1.2</max>
+  </scale>
   <transparency>true</transparency>
 </Pepe>
 
@@ -117,18 +121,22 @@
   <file>images/jellyFish.png</file>
   <startLoc x="120" y="140"/>
   <frames>8</frames>
-  <count>10</count>
+  <count>15</count>
   <frameInterval>200</frameInterval>
   <speed>
     <X min="-175" max="175"  />
     <Y min="-175" max="175"  />
   </speed>
+  <scale>
+    <min>0.4</min>
+    <max>1.1</max>
+  </scale>
   <transparency>true</transparency>
 </jellyFish>
 
 <bubble>
   <file>images/bubble2.png</file>
-  <count>50</count>
+  <count>35</count>
   <speed>
     <X min="-175" max="175"  />
     <Y min="-175" max="175"  />

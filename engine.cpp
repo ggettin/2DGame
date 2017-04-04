@@ -8,11 +8,11 @@
 #include "engine.h"
 #include "frameGenerator.h"
 #include "twoWaySprite.h"
-#include "scaledSprite.h"
+
 
 class ScaleComp {
 public:
-  bool operator()(const ScaledSprite* lhs, const ScaledSprite* rhs) const {
+  bool operator()(const Drawable* lhs, const Drawable* rhs) const {
     return lhs->getScale() < rhs->getScale();
   }
 };
@@ -56,13 +56,13 @@ Engine::Engine() :
 
   makeExtras();
 
-  for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
-    nontracker_sprite.push_back( new MultiSprite("jellyFish") );
-  }
-  for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
-    //sprites.push_back( new twoWaySprite("shark") );
-  }
- sprites.push_back( new Player("Pepe") );
+  // for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
+  //   nontracker_sprite.push_back( new MultiSprite("jellyFish") );
+  // }
+  // for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
+  //   //sprites.push_back( new twoWaySprite("shark") );
+  // }
+  sprites.push_back( new Player("Pepe") );
 
   switchSprite();
   std::cout << "Loading complete" << std::endl;
@@ -70,10 +70,23 @@ Engine::Engine() :
 
 
 void Engine::makeExtras(){
-  int count = Gamedata::getInstance().getXmlInt("bubble/count");
-  extras.reserve(count);
-  for( int i = 0; i < count; i++){
-    extras.push_back( new ScaledSprite("bubble") );
+  int bubbleCount = Gamedata::getInstance().getXmlInt("bubble/count");
+  int jellyFishCount = Gamedata::getInstance().getXmlInt("jellyFish/count");
+
+  extras.reserve(bubbleCount + jellyFishCount);
+
+  for( int i = 0; i < bubbleCount; i++){
+    extras.push_back( new Sprite("bubble") );
+  }
+
+  for( int i = 0; i < jellyFishCount; i++){
+    Drawable *tempSprite = new MultiSprite("jellyFish");
+    if (tempSprite->getScale() >= 0.9) {
+      nontracker_sprite.push_back(tempSprite);
+    }else{
+      extras.push_back( tempSprite );
+
+    }
   }
   sort(extras.begin(), extras.end(), ScaleComp());
 }
@@ -120,7 +133,7 @@ void Engine::draw() const {
     strm << "Seconds: " << clock.getSeconds();
     io.writeText(strm.str(), 20, 50);
     strm.str(std::string());
-    strm << "Avg. fps: " << clock.calcAvgFPS(fps);
+    strm << "Avg. FPS: " << clock.calcAvgFPS(fps);
     io.writeText(strm.str(), 20, 80);
     strm.str(std::string());
     strm << "Up: W" ;
@@ -196,7 +209,7 @@ void Engine::play() {
         }
 
         if ( keystate[SDL_SCANCODE_B] ) {
-          extras.push_back( new ScaledSprite("bubble") );
+          extras.push_back( new Sprite("bubble") );
         }
         if (keystate[SDL_SCANCODE_F4] && !makeVideo) {
           std::cout << "Initiating frame capture" << std::endl;

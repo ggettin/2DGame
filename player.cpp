@@ -14,7 +14,10 @@ Player::Player( const std::string& name) :
     //              Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
     //              Gamedata::getInstance().getXmlInt(name + "/speed/Y/max"))
     Vector2f(Gamedata::getInstance().getXmlInt(name+"/speed/X/max"),
-             Gamedata::getInstance().getXmlInt(name+"/speed/Y/max"))
+             Gamedata::getInstance().getXmlInt(name+"/speed/Y/max")),
+    Gamedata::getInstance().getRandFloat(
+               Gamedata::getInstance().getXmlFloat(name + "/scale/min"),
+               Gamedata::getInstance().getXmlFloat(name + "/scale/max") )
     ),
   frames( RenderContext::getInstance()->getFrames("PepeRight") ),
   framesLeft( RenderContext::getInstance()->getFrames(name+"Left") ),
@@ -50,8 +53,11 @@ Player::Player(const Player& s) :
   slowDown(s.slowDown)
   { }
 
+// void Player::draw() const {
+//   frames[currentFrame]->draw(getX(), getY());
+// }
 void Player::draw() const {
-  frames[currentFrame]->draw(getX(), getY());
+  frames[currentFrame]->draw(getX(), getY(), getScale());
 }
 
 void Player::advanceFrame(Uint32 ticks) {

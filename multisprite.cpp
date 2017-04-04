@@ -21,7 +21,10 @@ MultiSprite::MultiSprite( const std::string& name) :
 								Gamedata::getInstance().getXmlInt(name + "/speed/X/max")),
 						Gamedata::getInstance().getRandInRange(
 								Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
-								Gamedata::getInstance().getXmlInt(name + "/speed/Y/max")))
+								Gamedata::getInstance().getXmlInt(name + "/speed/Y/max"))),
+	Gamedata::getInstance().getRandFloat(
+							    Gamedata::getInstance().getXmlFloat(name + "/scale/min"),
+							    Gamedata::getInstance().getXmlFloat(name + "/scale/max") )
 	 ),
   frames( RenderContext::getInstance()->getFrames(name) ),
 
@@ -48,8 +51,12 @@ MultiSprite::MultiSprite(const MultiSprite& s) :
   frameHeight( s.frameHeight )
   { }
 
+// void MultiSprite::draw() const {
+//   frames[currentFrame]->draw(getX(), getY());
+// }
+
 void MultiSprite::draw() const {
-  frames[currentFrame]->draw(getX(), getY());
+  frames[currentFrame]->draw(getX(), getY(), getScale());
 }
 
 void MultiSprite::update(Uint32 ticks) {

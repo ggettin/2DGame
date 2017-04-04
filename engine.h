@@ -5,7 +5,6 @@
 #include "clock.h"
 #include "world.h"
 #include "viewport.h"
-#include "scaledSprite.h"
 #include "twoWaySprite.h"
 #include "Player.h"
 #include "hud.h"
@@ -30,7 +29,7 @@ private:
   bool hudOn;
 
   std::vector<Player*> sprites;
-  std::vector<ScaledSprite*> extras;
+  std::vector<Drawable*> extras;
   std::vector<Drawable*> nontracker_sprite;
   //Player player;
 

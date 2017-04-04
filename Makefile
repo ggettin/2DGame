@@ -22,7 +22,6 @@ OBJS = \
 	Queue.o \
 	clock.o \
 	engine.o \
-	scaledSprite.o \
 	twoWaySprite.o \
 	hud.o\
 	player.o \
