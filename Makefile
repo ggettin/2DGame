@@ -25,7 +25,7 @@ OBJS = \
 	scaledSprite.o \
 	twoWaySprite.o \
 	hud.o\
-	Player.o \
+	player.o \
 	main.o
 EXEC = run
 

@@ -7,12 +7,14 @@ Player::Player( const std::string& name) :
   Drawable(name,
     Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"),
              Gamedata::getInstance().getXmlInt(name+"/startLoc/y")),
-    Vector2f(Gamedata::getInstance().getRandInRange(
-                 Gamedata::getInstance().getXmlInt(name + "/speed/X/min"),
-                 Gamedata::getInstance().getXmlInt(name + "/speed/X/max")),
-             Gamedata::getInstance().getRandInRange(
-                 Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
-                 Gamedata::getInstance().getXmlInt(name + "/speed/Y/max")))
+    // Vector2f(Gamedata::getInstance().getRandInRange(
+    //              Gamedata::getInstance().getXmlInt(name + "/speed/X/min"),
+    //              Gamedata::getInstance().getXmlInt(name + "/speed/X/max")),
+    //          Gamedata::getInstance().getRandInRange(
+    //              Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
+    //              Gamedata::getInstance().getXmlInt(name + "/speed/Y/max"))
+    Vector2f(Gamedata::getInstance().getXmlInt(name+"/speed/X/max"),
+             Gamedata::getInstance().getXmlInt(name+"/speed/Y/max"))
     ),
   frames( RenderContext::getInstance()->getFrames("scubaRight") ),
   framesLeft( RenderContext::getInstance()->getFrames(name+"Left") ),

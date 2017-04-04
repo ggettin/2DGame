@@ -94,8 +94,8 @@ void Engine::draw() const {
 
 
   SDL_Color color = {0xff, 0, 0, 0};
-  io.writeText("Greg Gettings", color, 410, 30);
-  io.writeText("Livin' Underwater", color, 395, 60);
+  io.writeText("Greg Gettings & Sydney Paul", color, 410, 30);
+  io.writeText("Pepe the Scuba Diver", color, 395, 60);
 
 
   for(auto* s : sprites) s->draw();
@@ -192,29 +192,23 @@ void Engine::play() {
       }
 
       if (keystate[SDL_SCANCODE_A] && keystate[SDL_SCANCODE_D]){
-        std::cout << "a & d" << std::endl;
         sprites[0]->stop();
 
 
       } else if (keystate[SDL_SCANCODE_A]){
-        std::cout << "a " << std::endl;
         sprites[0]->left();
 
       } else if (keystate[SDL_SCANCODE_D]){
-        std::cout << "d" << std::endl;
         sprites[0]->right();
 
       }
       if (keystate[SDL_SCANCODE_W] && keystate[SDL_SCANCODE_S]){
-        std::cout << "w & s" << std::endl;
         sprites[0]->stop();
 
       }else if (keystate[SDL_SCANCODE_W]){
-        std::cout << "w" << std::endl;
         sprites[0]->up();
 
       }else if (keystate[SDL_SCANCODE_S]){
-        std::cout << "s" << std::endl;
         sprites[0]->down();
 
       }
