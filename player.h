@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#include "twoWaySprite.h"
+#include "drawable.h"
 
 class Player : public Drawable {
 public:
@@ -37,7 +37,7 @@ protected:
   int frameHeight;
 
   Vector2f initialVelocity;
-  const float slowDown;
+  float slowDown;
   Player& operator=(const Player&);
 
   void advanceFrame(Uint32 ticks);

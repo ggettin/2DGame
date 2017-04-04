@@ -19,7 +19,6 @@ Player::Player( const std::string& name) :
   frames( RenderContext::getInstance()->getFrames("sharkLeft") ),
   framesLeft( RenderContext::getInstance()->getFrames(name+"Left") ),
   framesRight( RenderContext::getInstance()->getFrames(name+"Right") ),
-
   currentFrame(0),
   numberOfFrames( Gamedata::getInstance().getXmlInt(name+"/frames") ),
   frameInterval( Gamedata::getInstance().getXmlInt(name+"/frameInterval")),
@@ -27,17 +26,12 @@ Player::Player( const std::string& name) :
   worldWidth(Gamedata::getInstance().getXmlInt("world/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("world/height")),
   frameWidth(frames[0]->getWidth()),
-  frameHeight(frames[0]->getHeight(),
+  frameHeight(frames[0]->getHeight()),
   initialVelocity(
-    Vector2f(Gamedata::getInstance().getRandInRange(
-                 Gamedata::getInstance().getXmlInt(name + "/speed/X/min"),
-                 Gamedata::getInstance().getXmlInt(name + "/speed/X/max")),
-             Gamedata::getInstance().getRandInRange(
-                 Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
-                 Gamedata::getInstance().getXmlInt(name + "/speed/Y/max"))
+    Vector2f(Gamedata::getInstance().getXmlInt(name + "/speed/X/min"),
+                 Gamedata::getInstance().getXmlInt(name + "/speed/Y/min")
              )),
-  slowDown(Gamedata::getInstance().getXmlInt(name+"slowDown")))
-{ }
+  slowDown( Gamedata::getInstance().getXmlInt(name+"/slowDown") ) { }
 
 
 Player::Player(const Player& s) :
