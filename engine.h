@@ -26,7 +26,7 @@ private:
   World coral;
   Viewport& viewport;
 
-  std::vector<Drawable*> sprites;
+  std::vector<Player*> sprites;
   std::vector<ScaledSprite*> extras;
   std::vector<Drawable*> nontracker_sprite;
 

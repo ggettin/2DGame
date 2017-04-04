@@ -3,18 +3,6 @@
 #include "renderContext.h"
 #include <cmath>
 
-void Player::draw() const {
-  frames[currentFrame]->draw(getX(), getY());
-}
-
-void Player::advanceFrame(Uint32 ticks) {
-  timeSinceLastFrame += ticks;
-  if (timeSinceLastFrame > frameInterval) {
-    currentFrame = (currentFrame+1) % numberOfFrames;
-    timeSinceLastFrame = 0;
-  }
-}
-
 Player::Player( const std::string& name) :
   Drawable(name,
     Vector2f(Gamedata::getInstance().getRandInRange(
@@ -40,8 +28,15 @@ Player::Player( const std::string& name) :
   worldHeight(Gamedata::getInstance().getXmlInt("world/height")),
   frameWidth(frames[0]->getWidth()),
   frameHeight(frames[0]->getHeight(),
-  initialVelocity(5),
-  slowDown(5))
+  initialVelocity(
+    Vector2f(Gamedata::getInstance().getRandInRange(
+                 Gamedata::getInstance().getXmlInt(name + "/speed/X/min"),
+                 Gamedata::getInstance().getXmlInt(name + "/speed/X/max")),
+             Gamedata::getInstance().getRandInRange(
+                 Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
+                 Gamedata::getInstance().getXmlInt(name + "/speed/Y/max"))
+             )),
+  slowDown(Gamedata::getInstance().getXmlInt(name+"slowDown")))
 { }
 
 
@@ -60,6 +55,18 @@ Player::Player(const Player& s) :
   initialVelocity(s.initialVelocity),
   slowDown(s.slowDown)
   { }
+
+void Player::draw() const {
+  frames[currentFrame]->draw(getX(), getY());
+}
+
+void Player::advanceFrame(Uint32 ticks) {
+  timeSinceLastFrame += ticks;
+  if (timeSinceLastFrame > frameInterval) {
+    currentFrame = (currentFrame+1) % numberOfFrames;
+    timeSinceLastFrame = 0;
+  }
+}
 
 void Player::stop(){
   setVelocityX(slowDown*getVelocityX());

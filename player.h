@@ -12,6 +12,10 @@ public:
 
 
   virtual void update(Uint32 ticks);
+  virtual void draw() const;
+   virtual const Frame* getFrame() const {
+    return frames[currentFrame];
+  }
   void stop();
   void right();
   void left();
@@ -19,7 +23,10 @@ public:
   void down();
 
 protected:
- 
+  std::vector<Frame *> frames;
+  const std::vector<Frame *> framesLeft;
+  const std::vector<Frame *> framesRight;
+
   unsigned currentFrame;
   unsigned numberOfFrames;
   unsigned frameInterval;

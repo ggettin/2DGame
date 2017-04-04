@@ -24,7 +24,7 @@ Engine::~Engine() {
   // for(auto sprite : sprites){
   //   delete sprite;
   // }
-  std::vector<Drawable*>::iterator it = sprites.begin();
+  std::vector<Player*>::iterator it = sprites.begin();
 
   while ( it != sprites.end() ) {
     delete *it;
@@ -127,6 +127,7 @@ void Engine::switchSprite(){
 }
 
 void Engine::play() {
+
   SDL_Event event;
   const Uint8* keystate;
   bool done = false;
