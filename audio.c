@@ -179,7 +179,7 @@ void playMusic(const char * filename, int volume)
     SDL_UnlockAudioDevice(gDevice->device);
 }
 
-void initAudio(void)
+audio::audio()
 {
     Sound * global;
     gDevice = calloc(1, sizeof(PrivateAudioDevice));
@@ -233,7 +233,7 @@ void initAudio(void)
     }
 }
 
-void endAudio(void)
+audio::~audio();
 {
     if(gDevice->audioEnabled)
     {
