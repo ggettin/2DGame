@@ -2,7 +2,7 @@
 <GameData>
 <!-- screenTitle is also used to identify you and your animation.
      So make sure to include your name as part of the screenTitle -->
-<title>Star Animation</title>
+<title>Pepe the Scuba Diver</title>
 <maxStringSize>50</maxStringSize>
 
 <frameCapOn>true</frameCapOn>
@@ -11,11 +11,11 @@
 <queueMax>100</queueMax>
 
 <maxFrames>400</maxFrames>
-<username>ggettin</username>
+<username>ggettin and sepaul</username>
 
 <view>
   <width>960</width>
-  <height>600</height>
+  <height>700</height>
 </view>
 
 <world>
@@ -45,12 +45,12 @@
 </font>
 
 <scuba>
-  <startLoc x="120" y="140"/>
+  <startLoc x="120" y="75"/>
   <frames>3</frames>
   <count>2</count>
   <frameInterval>200</frameInterval>
   <minFrameDelay>5</minFrameDelay>
-  <initialVelocity x="300" y="0"/>
+  <initialVelocity x="250" y="100"/>
   <slowDown>0</slowDown>
   <speed>
     <X min="-250" max="30"  />
@@ -61,7 +61,7 @@
 
 <scubaLeft>
   <file>images/scubaLeft.png</file>
-  <startLoc x="120" y="140"/>
+  <startLoc x="120" y="75"/>
   <frames>6</frames>
   <frameInterval>59</frameInterval>
   <speedX>-200</speedX>
@@ -71,7 +71,7 @@
 
 <scubaRight>
   <file>images/scubaRight.png</file>
-  <startLoc x="120" y="140"/>
+  <startLoc x="120" y="75"/>
   <frames>6</frames>
   <frameInterval>59</frameInterval>
   <speedX>-200</speedX>
