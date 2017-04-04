@@ -5,7 +5,7 @@
 #include <cmath>
 #include "twoWaySprite.h"
 
-class Player : public twoWaySprite {
+class Player : public Drawable {
 public:
   Player(const std::string&);
   Player(const Player&);
@@ -19,14 +19,20 @@ public:
   void down();
 
 protected:
-  float frameInterval;
-  float minFrameDelay;
-  float frameDelay;
+ 
+  unsigned currentFrame;
+  unsigned numberOfFrames;
+  unsigned frameInterval;
+  float timeSinceLastFrame;
+  int worldWidth;
+  int worldHeight;
+  int frameWidth;
+  int frameHeight;
 
   Vector2f initialVelocity;
   const float slowDown;
   Player& operator=(const Player&);
-  
+
   void advanceFrame(Uint32 ticks);
 };
 #endif
