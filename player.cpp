@@ -68,26 +68,27 @@ void Player::stop(){
 }
 
 void Player::right(){
-  if( getX() < worldWidth-frameWidth){
-    setVelocityX(initialVelocity[0]);
+  if( getX() > 0){
+    setVelocityX(-initialVelocity[0]);
   }
   frames = framesRight;
 }
 void Player::left(){
-  if( getX() > 0){
-    setVelocityX(-initialVelocity[0]);
+  if( getX() < worldWidth-frameWidth){
+    setVelocityX(initialVelocity[0]);
   }
   frames = framesLeft;
 }
 void Player::up(){
-  if( getY() > 0){
-    setVelocityY(-initialVelocity[1]);
+   if( getY() < worldHeight-frameHeight){
+    setVelocityY(initialVelocity[1]);
   }
 }
 void Player::down(){
-  if( getY() < worldHeight-frameHeight){
-    setVelocityY(initialVelocity[1]);
+  if( getY() > 0){
+    setVelocityY(-initialVelocity[1]);
   }
+ 
 }
 
 

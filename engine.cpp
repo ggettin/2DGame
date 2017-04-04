@@ -24,7 +24,7 @@ Engine::~Engine() {
   // for(auto sprite : sprites){
   //   delete sprite;
   // }
-  std::vector<Drawable*>::iterator it = sprites.begin();
+  std::vector<Player*>::iterator it = sprites.begin();
 
   while ( it != sprites.end() ) {
     delete *it;
@@ -45,7 +45,7 @@ Engine::Engine() :
   viewport( Viewport::getInstance() ),
   sprites(),
   nontracker_sprite(),
-  player("scuba"),
+  //player("scuba"),
   currentSprite(-1),
   
 
@@ -54,12 +54,12 @@ Engine::Engine() :
   makeExtras();
 
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
-    sprites.push_back( new MultiSprite("jellyFish") );
+    nontracker_sprite.push_back( new MultiSprite("jellyFish") );
   }
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
     //sprites.push_back( new twoWaySprite("shark") );
   }
- //sprites.push_back( player );
+ sprites.push_back( new Player("scuba") );
 
   switchSprite();
   std::cout << "Loading complete" << std::endl;
@@ -104,7 +104,7 @@ void Engine::draw() const {
   }
   for(auto* f : nontracker_sprite) f->draw();
 
-  player.draw();
+  //player.draw();
 
   viewport.draw();
   SDL_RenderPresent(renderer);
@@ -114,7 +114,7 @@ void Engine::update(Uint32 ticks) {
   for(auto* s : sprites) s->update(ticks);
   for(auto* e : extras) e->update(ticks);
   for(auto* f : nontracker_sprite) f->update(ticks);
-  player.update(ticks);
+ // player.update(ticks);
 
   water.update();
   coral.update();
@@ -172,25 +172,29 @@ void Engine::play() {
 
       if (keystate[SDL_SCANCODE_A] && keystate[SDL_SCANCODE_D]){
         std::cout << "a & d" << std::endl;
-        player.stop();
+        sprites[0]->stop();
 
 
       } else if (keystate[SDL_SCANCODE_A]){
         std::cout << "a " << std::endl;
-        player.left();
+        sprites[0]->left();
 
       } else if (keystate[SDL_SCANCODE_D]){
         std::cout << "d" << std::endl;
+        sprites[0]->right();
 
       }
       if (keystate[SDL_SCANCODE_W] && keystate[SDL_SCANCODE_S]){
         std::cout << "w & s" << std::endl;
+        sprites[0]->stop();
 
       }else if (keystate[SDL_SCANCODE_W]){
         std::cout << "w" << std::endl;
+        sprites[0]->up();
 
       }else if (keystate[SDL_SCANCODE_S]){
         std::cout << "s" << std::endl;
+        sprites[0]->down();
 
       }
     }
