@@ -124,7 +124,7 @@
 </jellyFish>
 
 <bubble>
-  <file>images/bubble.png</file>
+  <file>images/bubble2.png</file>
   <count>50</count>
   <speed>
     <X min="-175" max="175"  />
