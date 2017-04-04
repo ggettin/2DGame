@@ -146,9 +146,9 @@ void Engine::play() {
           if ( clock.isPaused() ) clock.unpause();
           else clock.pause();
         }
-        if ( keystate[SDL_SCANCODE_S] ) {
-          clock.toggleSloMo();
-        }
+        // if ( keystate[SDL_SCANCODE_S] ) {
+        //   clock.toggleSloMo();
+        // }
         if ( keystate[SDL_SCANCODE_T] ) {
           //switchSprite();
         }
@@ -163,6 +163,27 @@ void Engine::play() {
           std::cout << "Terminating frame capture" << std::endl;
           makeVideo = false;
         }
+      }
+
+      if (keystate[SDL_SCANCODE_A] && keystate[SDL_SCANCODE_D]){
+        std::cout << "a & d" << std::endl;
+
+      } else if (keystate[SDL_SCANCODE_A]){
+        std::cout << "a " << std::endl;
+
+      } else if (keystate[SDL_SCANCODE_D]){
+        std::cout << "d" << std::endl;
+
+      }
+      if (keystate[SDL_SCANCODE_W] && keystate[SDL_SCANCODE_S]){
+        std::cout << "w & s" << std::endl;
+
+      }else if (keystate[SDL_SCANCODE_W]){
+        std::cout << "w" << std::endl;
+
+      }else if (keystate[SDL_SCANCODE_S]){
+        std::cout << "s" << std::endl;
+
       }
     }
     ticks = clock.getElapsedTicks();
