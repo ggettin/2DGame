@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "player.h"
 #include "gamedata.h"
 #include "renderContext.h"
 #include <cmath>
@@ -31,8 +31,8 @@ Player::Player( const std::string& name) :
   frameWidth(frames[0]->getWidth()),
   frameHeight(frames[0]->getHeight()),
   initialVelocity(
-    Vector2f(Gamedata::getInstance().getXmlInt(name + "/speed/X/min"),
-                 Gamedata::getInstance().getXmlInt(name + "/speed/Y/min")
+    Vector2f(Gamedata::getInstance().getXmlInt(name + "/speed/X/max"),
+                 Gamedata::getInstance().getXmlInt(name + "/speed/Y/max")
              )),
   slowDown( Gamedata::getInstance().getXmlInt(name+"/slowDown") ) { }
 
@@ -74,23 +74,24 @@ void Player::stop(){
 }
 
 void Player::right(){
-  if( getX() > 0){
-    setVelocityX(-initialVelocity[0]);
+  if( getX() < worldWidth-frameWidth){
+    setVelocityX(initialVelocity[0]);
   }
   frames = framesRight;
 }
 void Player::left(){
-  if( getX() < worldWidth-frameWidth){
-    setVelocityX(initialVelocity[0]);
+  if( getX() > 0){
+    setVelocityX(-initialVelocity[0]);
   }
   frames = framesLeft;
 }
-void Player::up(){
+
+void Player::down(){
    if( getY() < worldHeight-frameHeight){
     setVelocityY(initialVelocity[1]);
   }
 }
-void Player::down(){
+void Player::up(){
   if( getY() > 0){
     setVelocityY(-initialVelocity[1]);
   }

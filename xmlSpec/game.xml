@@ -14,8 +14,8 @@
 <username>ggettin and sepaul</username>
 
 <view>
-  <width>600</width>
-  <height>300</height>
+  <width>854</width>
+  <height>480</height>
 </view>
 
 <world>
@@ -45,7 +45,7 @@
 </font>
 
 <Pepe>
-  <startLoc x="120" y="150"/>
+  <startLoc x="900" y="250"/>
   <frames>3</frames>
   <count>2</count>
   <frameInterval>200</frameInterval>
@@ -53,8 +53,8 @@
   <initialVelocity x="250" y="100"/>
   <slowDown>0</slowDown>
   <speed>
-    <X min="-250" max="150"  />
-    <Y min="-150" max="150"  />
+    <X min="-250" max="400"  />
+    <Y min="-150" max="400"  />
   </speed>
   <scale>
     <min>1.2</min>
