@@ -44,6 +44,40 @@
   <alpha>0</alpha>
 </font>
 
+<scuba>
+  <startLoc x="120" y="140"/>
+  <frames>3</frames>
+  <count>2</count>
+  <frameInterval>200</frameInterval>
+  <speed>
+    <X min="-250" max="30"  />
+    <Y min="-150" max="150"  />
+  </speed>
+  <transparency>true</transparency>
+</scuba>
+
+<scubaLeft>
+  <file>images/scubaLeft.png</file>
+  <startLoc x="120" y="140"/>
+  <frames>6</frames>
+  <frameInterval>59</frameInterval>
+  <speedX>-200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</scubaLeft>
+
+<scubaRight>
+  <file>images/scubaRight.png</file>
+  <startLoc x="120" y="140"/>
+  <frames>6</frames>
+  <frameInterval>59</frameInterval>
+  <speedX>-200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</scubaRight>
+
+
+
 <sharkLeft>
   <file>images/sharkSwimLeft.png</file>
   <startLoc x="120" y="140"/>

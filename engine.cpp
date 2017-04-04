@@ -53,6 +53,8 @@ Engine::Engine() :
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
     sprites.push_back( new twoWaySprite("shark") );
   }
+  sprites.push_back( new twoWaySprite("scuba") );
+
   switchSprite();
   std::cout << "Loading complete" << std::endl;
 }
