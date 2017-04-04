@@ -4,9 +4,9 @@
 HUD::HUD() :
   rect( new SDL_Rect()),
   renderContext( RenderContext::getInstance()){
-    rect->x = 150;
-    rect->y = 150;
-    rect->w = 250;
+    rect->x = 12;
+    rect->y = 16;
+    rect->w = 200;
     rect->h = 150;
 }
 
@@ -18,7 +18,7 @@ void HUD::drawHUD(){
   SDL_SetRenderDrawColor( renderer, 208, 209, 210, 255 );
 
   // Clear winow
-  SDL_RenderClear( renderer );
+  //SDL_RenderClear( renderer );
 
   // First set the blend mode so that alpha blending will work;
   // the default blend mode is SDL_BLENDMODE_NONE!
@@ -32,5 +32,5 @@ void HUD::drawHUD(){
   SDL_RenderDrawRect( renderer, rect );
 
   // Render the rect to the screen
-  SDL_RenderPresent(renderer);
+  //SDL_RenderPresent(renderer);
 }

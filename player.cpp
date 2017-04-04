@@ -16,7 +16,7 @@ Player::Player( const std::string& name) :
                  Gamedata::getInstance().getXmlInt(name + "/speed/Y/min"),
                  Gamedata::getInstance().getXmlInt(name + "/speed/Y/max")))
     ),
-  frames( RenderContext::getInstance()->getFrames("sharkLeft") ),
+  frames( RenderContext::getInstance()->getFrames("scubaRight") ),
   framesLeft( RenderContext::getInstance()->getFrames(name+"Left") ),
   framesRight( RenderContext::getInstance()->getFrames(name+"Right") ),
   currentFrame(0),
@@ -88,7 +88,7 @@ void Player::down(){
   if( getY() > 0){
     setVelocityY(-initialVelocity[1]);
   }
- 
+
 }
 
 

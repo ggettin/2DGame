@@ -89,17 +89,14 @@ void Engine::draw() const {
     i++;
   }
   coral.draw();
-  std::stringstream strm;
+
   int fps = clock.getFps();
-  strm << "fps: " << fps;
-  io.writeText(strm.str(), 30, 60);
+
 
   SDL_Color color = {0xff, 0, 0, 0};
   io.writeText("Greg Gettings", color, 410, 30);
   io.writeText("Livin' Underwater", color, 395, 60);
-  strm.str(std::string());
-  strm << "avg. fps: " << clock.calcAvgFPS(fps);
-  io.writeText(strm.str(), 30, 90);
+
 
   for(auto* s : sprites) s->draw();
   while(i < extras.size()){
@@ -110,7 +107,20 @@ void Engine::draw() const {
 
   //player.draw();
 
-  viewport.draw();
+  if (hudOn) {
+
+    hud->drawHUD();
+    viewport.draw();
+    std::stringstream strm;
+    strm << "fps: " << fps;
+    io.writeText(strm.str(), 30, 60);
+    strm.str(std::string());
+    strm << "avg. fps: " << clock.calcAvgFPS(fps);
+    io.writeText(strm.str(), 30, 90);
+
+  }
+
+
 
   SDL_RenderPresent(renderer);
 }
@@ -144,9 +154,6 @@ void Engine::play() {
   FrameGenerator frameGen;
 
   while ( !done ) {
-    // if (hudOn) {
-    //   hud->drawHUD();
-    // }
     while ( SDL_PollEvent(&event) ) {
 
       keystate = SDL_GetKeyboardState(NULL);
@@ -161,7 +168,7 @@ void Engine::play() {
           else clock.pause();
         }
         if ( keystate[SDL_SCANCODE_F1] ) {
-
+            hudOn = !hudOn;
         }
 
         // if ( keystate[SDL_SCANCODE_S] ) {
