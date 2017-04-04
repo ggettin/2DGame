@@ -14,8 +14,8 @@
 <username>ggettin and sepaul</username>
 
 <view>
-  <width>960</width>
-  <height>700</height>
+  <width>600</width>
+  <height>300</height>
 </view>
 
 <world>
@@ -45,7 +45,7 @@
 </font>
 
 <Pepe>
-  <startLoc x="120" y="75"/>
+  <startLoc x="120" y="150"/>
   <frames>3</frames>
   <count>2</count>
   <frameInterval>200</frameInterval>
