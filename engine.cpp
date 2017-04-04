@@ -30,6 +30,9 @@ Engine::~Engine() {
     delete *it;
     ++it;
   }
+  for(auto it: nontracker_sprite){
+    delete it;
+  }
 }
 
 Engine::Engine() :
@@ -41,6 +44,7 @@ Engine::Engine() :
   coral("coral", Gamedata::getInstance().getXmlInt("coral/factor") ),
   viewport( Viewport::getInstance() ),
   sprites(),
+  nontracker_sprite(),
   currentSprite(-1),
 
   makeVideo( false ){
@@ -48,10 +52,10 @@ Engine::Engine() :
   makeExtras();
 
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
-    sprites.push_back( new MultiSprite("jellyFish") );
+    nontracker_sprite.push_back( new MultiSprite("jellyFish") );
   }
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
-    sprites.push_back( new twoWaySprite("shark") );
+    nontracker_sprite.push_back( new twoWaySprite("shark") );
   }
   sprites.push_back( new twoWaySprite("scuba") );
 
@@ -96,6 +100,8 @@ void Engine::draw() const {
     extras[i]->draw();
     i++;
   }
+  for(auto* f : nontracker_sprite) f->draw();
+
 
   viewport.draw();
   SDL_RenderPresent(renderer);
@@ -104,6 +110,8 @@ void Engine::draw() const {
 void Engine::update(Uint32 ticks) {
   for(auto* s : sprites) s->update(ticks);
   for(auto* e : extras) e->update(ticks);
+  for(auto* f : nontracker_sprite) f->update(ticks);
+
   water.update();
   coral.update();
   viewport.update(); // always update viewport last
@@ -142,7 +150,7 @@ void Engine::play() {
           clock.toggleSloMo();
         }
         if ( keystate[SDL_SCANCODE_T] ) {
-          switchSprite();
+          //switchSprite();
         }
         if ( keystate[SDL_SCANCODE_B] ) {
           extras.push_back( new ScaledSprite("bubble") );

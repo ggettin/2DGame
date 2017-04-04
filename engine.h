@@ -26,6 +26,7 @@ private:
 
   std::vector<Drawable*> sprites;
   std::vector<ScaledSprite*> extras;
+  std::vector<Drawable*> nontracker_sprite;
 
   int currentSprite;
   bool makeVideo;
