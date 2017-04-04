@@ -26,9 +26,10 @@ private:
   World coral;
   Viewport& viewport;
 
-  std::vector<Player*> sprites;
+  std::vector<Drawable*> sprites;
   std::vector<ScaledSprite*> extras;
   std::vector<Drawable*> nontracker_sprite;
+  Player player;
 
   int currentSprite;
   bool makeVideo;

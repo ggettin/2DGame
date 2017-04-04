@@ -24,7 +24,7 @@ Engine::~Engine() {
   // for(auto sprite : sprites){
   //   delete sprite;
   // }
-  std::vector<Player*>::iterator it = sprites.begin();
+  std::vector<Drawable*>::iterator it = sprites.begin();
 
   while ( it != sprites.end() ) {
     delete *it;
@@ -45,19 +45,21 @@ Engine::Engine() :
   viewport( Viewport::getInstance() ),
   sprites(),
   nontracker_sprite(),
+  player("scuba"),
   currentSprite(-1),
+  
 
   makeVideo( false ){
 
   makeExtras();
 
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
-    nontracker_sprite.push_back( new MultiSprite("jellyFish") );
+    sprites.push_back( new MultiSprite("jellyFish") );
   }
   for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
-    nontracker_sprite.push_back( new twoWaySprite("shark") );
+    //sprites.push_back( new twoWaySprite("shark") );
   }
-  sprites.push_back( new Player("scuba") );
+ //sprites.push_back( player );
 
   switchSprite();
   std::cout << "Loading complete" << std::endl;
@@ -102,6 +104,7 @@ void Engine::draw() const {
   }
   for(auto* f : nontracker_sprite) f->draw();
 
+  player.draw();
 
   viewport.draw();
   SDL_RenderPresent(renderer);
@@ -111,6 +114,7 @@ void Engine::update(Uint32 ticks) {
   for(auto* s : sprites) s->update(ticks);
   for(auto* e : extras) e->update(ticks);
   for(auto* f : nontracker_sprite) f->update(ticks);
+  player.update(ticks);
 
   water.update();
   coral.update();
@@ -168,12 +172,12 @@ void Engine::play() {
 
       if (keystate[SDL_SCANCODE_A] && keystate[SDL_SCANCODE_D]){
         std::cout << "a & d" << std::endl;
-        sprites[0]->stop();
+        player.stop();
 
 
       } else if (keystate[SDL_SCANCODE_A]){
         std::cout << "a " << std::endl;
-        sprites[0]->left();
+        player.left();
 
       } else if (keystate[SDL_SCANCODE_D]){
         std::cout << "d" << std::endl;
