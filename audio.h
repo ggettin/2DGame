@@ -31,35 +31,38 @@ extern "C"
 {
 #endif
 
-/*
- * Play a wave file currently must be S16LE format 2 channel stereo
- *
- * @param filename      Filename to open, use getAbsolutePath
- * @param volume        Volume 0 - 128. SDL_MIX_MAXVOLUME constant for max volume
- *
- */
-void playSound(const char * filename, int volume);
 
-/*
- * Plays a new music, only 1 at a time plays
- *
- * @param filename      Filename of the WAVE file to load
- * @param volume        Volume read playSound for moree
- *
- */
-void playMusic(const char * filename, int volume);
+Class audio {
+	public:
+		audio();
+		~audio();
 
-/*
- * Free all audio related variables
- *
- */
-void endAudio(void);
+	private:
 
-/*
- * Initialize Audio Variable
- *
- */
-void initAudio(void);
+			/*
+	 * Play a wave file currently must be S16LE format 2 channel stereo
+	 *
+	 * @param filename      Filename to open, use getAbsolutePath
+	 * @param volume        Volume 0 - 128. SDL_MIX_MAXVOLUME constant for max volume
+	 *
+	 */
+	void playSound(const char * filename, int volume);
+
+	/*
+	 * Plays a new music, only 1 at a time plays
+	 *
+	 * @param filename      Filename of the WAVE file to load
+	 * @param volume        Volume read playSound for moree
+	 *
+	 */
+	void playMusic(const char * filename, int volume);
+
+	/*
+	 * Free all audio related variables
+	 *
+	 */
+
+};
 
 #ifdef __cplusplus
 }
