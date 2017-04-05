@@ -186,9 +186,9 @@ void Engine::play() {
 
   if(SDL_Init(SDL_INIT_AUDIO) < 0)
   {
-    return; 
+    return;
   }
-  initAudio();
+  audio *aud = new audio();
 
   while ( !done ) {
     while ( SDL_PollEvent(&event) ) {
@@ -217,10 +217,10 @@ void Engine::play() {
 
         if ( keystate[SDL_SCANCODE_B] ) {
 
-          playSound("sounds/fishbubbles.wav", SDL_MIX_MAXVOLUME / 2);
+          aud->playSound("sounds/fishbubbles.wav", SDL_MIX_MAXVOLUME / 2);
           SDL_Delay(100);
           /* End Simple-SDL2-Audio */
-          
+
 
           int additions = Gamedata::getInstance().getXmlInt("bubble/additions");
           for (int i = 0; i < additions; i++){
@@ -271,6 +271,6 @@ void Engine::play() {
       }
     }
   }
-  endAudio();
+  //endAudio();
 
 }

@@ -32,12 +32,64 @@ extern "C"
 #endif
 
 
-Class audio {
-	public:
+
+/*
+ * Native WAVE format
+ *
+ * On some GNU/Linux you can identify a files properties using:
+ *      mplayer -identify music.wav
+ *
+ * On some GNU/Linux to convert any music to this or another specified format use:
+ *      ffmpeg -i in.mp3 -acodec pcm_s16le -ac 2 -ar 48000 out.wav
+ */
+/* SDL_AudioFormat of files, such as s16 little endian */
+#define AUDIO_FORMAT AUDIO_S16LSB
+
+/* Frequency of the file */
+#define AUDIO_FREQUENCY 48000
+
+/* 1 mono, 2 stereo, 4 quad, 6 (5.1) */
+#define AUDIO_CHANNELS 2
+
+/* Specifies a unit of audio data to be used at a time. Must be a power of 2 */
+#define AUDIO_SAMPLES 4096
+
+/*
+ * Queue structure for all loaded sounds
+ *
+ */
+typedef struct sound
+{
+    uint32_t length;
+    uint32_t lengthTrue;
+    uint8_t * bufferTrue;
+    uint8_t * buffer;
+    uint8_t loop;
+    uint8_t fade;
+    uint8_t volume;
+
+    SDL_AudioSpec audio;
+
+    struct sound * next;
+} Sound;
+
+/*
+ * Definition for the game global sound device
+ *
+ */
+typedef struct privateAudioDevice
+{
+    SDL_AudioDeviceID device;
+    SDL_AudioSpec want;
+    uint8_t audioEnabled;
+} PrivateAudioDevice;
+
+
+class audio{
+public:
+
 		audio();
 		~audio();
-
-	private:
 
 			/*
 	 * Play a wave file currently must be S16LE format 2 channel stereo
@@ -57,10 +109,10 @@ Class audio {
 	 */
 	void playMusic(const char * filename, int volume);
 
-	/*
-	 * Free all audio related variables
-	 *
-	 */
+private:
+	PrivateAudioDevice *gDevice;
+
+
 
 };
 

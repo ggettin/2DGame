@@ -22,56 +22,7 @@
 #include <SDL2/SDL.h>
 #include "audio.h"
 
-/*
- * Native WAVE format
- *
- * On some GNU/Linux you can identify a files properties using:
- *      mplayer -identify music.wav
- *
- * On some GNU/Linux to convert any music to this or another specified format use:
- *      ffmpeg -i in.mp3 -acodec pcm_s16le -ac 2 -ar 48000 out.wav
- */
-/* SDL_AudioFormat of files, such as s16 little endian */
-#define AUDIO_FORMAT AUDIO_S16LSB
 
-/* Frequency of the file */
-#define AUDIO_FREQUENCY 48000
-
-/* 1 mono, 2 stereo, 4 quad, 6 (5.1) */
-#define AUDIO_CHANNELS 2
-
-/* Specifies a unit of audio data to be used at a time. Must be a power of 2 */
-#define AUDIO_SAMPLES 4096
-
-/*
- * Queue structure for all loaded sounds
- *
- */
-typedef struct sound
-{
-    uint32_t length;
-    uint32_t lengthTrue;
-    uint8_t * bufferTrue;
-    uint8_t * buffer;
-    uint8_t loop;
-    uint8_t fade;
-    uint8_t volume;
-
-    SDL_AudioSpec audio;
-
-    struct sound * next;
-} Sound;
-
-/*
- * Definition for the game global sound device
- *
- */
-typedef struct privateAudioDevice
-{
-    SDL_AudioDeviceID device;
-    SDL_AudioSpec want;
-    uint8_t audioEnabled;
-} PrivateAudioDevice;
 
 /*
  * Add a sound to the end of the queue
@@ -80,7 +31,7 @@ typedef struct privateAudioDevice
  * @param new       New Sound to add
  *
  */
-static void addSound(Sound * root, Sound * new);
+static void addSound(Sound * root, Sound * newSound);
 
 /*
  * Frees as many chained Sounds as given
@@ -112,29 +63,27 @@ static Sound * createSound(const char * filename, uint8_t loop, int volume);
  */
 static inline void audioCallback(void * userdata, uint8_t * stream, int len);
 
-static PrivateAudioDevice * gDevice;
-
-void playSound(const char * filename, int volume)
+void audio::playSound(const char * filename, int volume)
 {
-    Sound * new;
+    Sound * newSound;
 
     if(!gDevice->audioEnabled)
     {
         return;
     }
 
-    new = createSound(filename, 0, volume);
+    newSound = createSound(filename, 0, volume);
 
     SDL_LockAudioDevice(gDevice->device);
-    addSound((Sound *) (gDevice->want).userdata, new);
+    addSound((Sound *) (gDevice->want).userdata, newSound);
 
     SDL_UnlockAudioDevice(gDevice->device);
 }
 
-void playMusic(const char * filename, int volume)
+void audio::playMusic(const char * filename, int volume)
 {
     Sound * global;
-    Sound * new;
+    Sound * newSound;
     uint8_t music;
 
     if(!gDevice->audioEnabled)
@@ -145,7 +94,7 @@ void playMusic(const char * filename, int volume)
     music = 0;
 
     /* Create new music sound with loop */
-    new = createSound(filename, 1, volume);
+    newSound = createSound(filename, 1, volume);
 
     /* Lock callback function */
     SDL_LockAudioDevice(gDevice->device);
@@ -174,15 +123,15 @@ void playMusic(const char * filename, int volume)
         global = global->next;
     }
 
-    addSound((Sound *) (gDevice->want).userdata, new);
+    addSound((Sound *) (gDevice->want).userdata, newSound);
 
     SDL_UnlockAudioDevice(gDevice->device);
 }
 
-audio::audio()
+audio::audio() : gDevice()
 {
     Sound * global;
-    gDevice = calloc(1, sizeof(PrivateAudioDevice));
+    gDevice = (PrivateAudioDevice *) calloc(1, sizeof(PrivateAudioDevice));
 
     if(!(SDL_WasInit(SDL_INIT_AUDIO) & SDL_INIT_AUDIO))
     {
@@ -210,7 +159,7 @@ audio::audio()
     (gDevice->want).callback = audioCallback;
     (gDevice->want).userdata = calloc(1, sizeof(Sound));
 
-    global = (gDevice->want).userdata;
+    global = (Sound *)(gDevice->want).userdata;
 
     if(global == NULL)
     {
@@ -233,7 +182,7 @@ audio::audio()
     }
 }
 
-audio::~audio();
+audio::~audio()
 {
     if(gDevice->audioEnabled)
     {
@@ -250,32 +199,32 @@ audio::~audio();
 
 static Sound * createSound(const char * filename, uint8_t loop, int volume)
 {
-    Sound * new = calloc(1, sizeof(Sound));
+    Sound * newSound = (Sound *) calloc(1, sizeof(Sound));
 
-    if(new == NULL)
+    if(newSound == NULL)
     {
         fprintf(stderr, "[%s: %d]Error: Memory allocation error\n", __FILE__, __LINE__);
         return NULL;
     }
 
-    new->next = NULL;
-    new->loop = loop;
-    new->fade = 0;
-    new->volume = volume;
+    newSound->next = NULL;
+    newSound->loop = loop;
+    newSound->fade = 0;
+    newSound->volume = volume;
 
-    if(SDL_LoadWAV(filename, &(new->audio), &(new->bufferTrue), &(new->lengthTrue)) == NULL)
+    if(SDL_LoadWAV(filename, &(newSound->audio), &(newSound->bufferTrue), &(newSound->lengthTrue)) == NULL)
     {
         fprintf(stderr, "[%s: %d]Warning: failed to open wave file: %s error: %s\n", __FILE__, __LINE__, filename, SDL_GetError());
-        free(new);
+        free(newSound);
         return NULL;
     }
 
-    new->buffer = new->bufferTrue;
-    new->length = new->lengthTrue;
-    (new->audio).callback = NULL;
-    (new->audio).userdata = NULL;
+    newSound->buffer = newSound->bufferTrue;
+    newSound->length = newSound->lengthTrue;
+    (newSound->audio).callback = NULL;
+    (newSound->audio).userdata = NULL;
 
-    return new;
+    return newSound;
 }
 
 static inline void audioCallback(void * userdata, uint8_t * stream, int len)
@@ -339,7 +288,7 @@ static inline void audioCallback(void * userdata, uint8_t * stream, int len)
     }
 }
 
-static void addSound(Sound * root, Sound * new)
+static void addSound(Sound * root, Sound * newSound)
 {
     if(root == NULL)
     {
@@ -351,7 +300,7 @@ static void addSound(Sound * root, Sound * new)
         root = root->next;
     }
 
-    root->next = new;
+    root->next = newSound;
 }
 
 static void freeSound(Sound * sound)
