@@ -1,4 +1,4 @@
-Name: Greg Gettings & Sydney Pauld
+Name: Greg Gettings & Sydney Paul
 
 Clemson Email Address: ggettin@g.clemson.edu
 
@@ -6,20 +6,18 @@ Project no: 4
 
 Project due date: Tuesday, April 4
 
-Project description:  Begin to build an actual game that includes a heads-up-display, a moving player object, and continue adding depth with the painters algorithm.
+Project description:  Begin to build an actual game that includes a heads-up-display, a moving player object, and added depth with the painters algorithm.
 
 The easiest part of this project: Working with existing code.
 
 Added Features:
 	- A bubble sound effect is played when b is pressed to spawn an user/XML defined number of bubbles
-	- Painters algorithm can be applied to multiple any drawable class. Not just a single class	
-	- modified constructors of all non-players to make locations and velocities random within the limits defined by the user in the XML and size of the world
-
-
+	- Painters algorithm can be applied to multiple any drawable class. Not just a single class
+	- modified constructors of all non-players to make locations and velocities random within the limits defined by the user in the XML and size of the world.
 
 
 Sources for sprites/backgrounds:
-	Shark: https://www.spriters-resource.com/pc_computer/maplestory/sheet/22477/
+	Scuba Penguin: https://www.spriters-resource.com/pc_computer/maplestory/sheet/22477/
 
 	JellyFish: https://www.spriters-resource.com/game_boy_advance/spongebobsquarepantssupersponge/sheet/26008/
 
@@ -28,3 +26,6 @@ Sources for sprites/backgrounds:
 	Sea background: http://www.powerpointhintergrund.com/ppt-image/sea-background-1966.html
 
 	Ocean floor: https://clipartfest.com/download/c86f0b4a38a61c40a365a3012b123707906863a6.html
+
+Other sources of help:
+	https://github.com/jakebesworth/Simple-SDL2-Audio was adapted to c++ for playing sound effects
