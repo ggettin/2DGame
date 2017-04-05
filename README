@@ -1,6 +1,6 @@
 Name: Greg Gettings & Sydney Paul
 
-Clemson Email Address: ggettin@g.clemson.edu sepaul@g.clemson.edu
+Clemson Email Address: ggettin@g.clemson.edu, sepaul@g.clemson.edu
 
 Project no: 4
 
@@ -11,8 +11,8 @@ Project description:  Begin to build an actual game that includes a heads-up-dis
 The easiest part of this project: Working with existing code.
 
 Added Features:
-	- A bubble sound effect is played when b is pressed to spawn an user/XML defined number of bubbles
-	- Painters algorithm can be applied to multiple any drawable class. Not just a single class
+	- A bubble sound effect is played when b is pressed to spawn an user/XML defined number of bubbles. (audio class)
+	- Painters algorithm can be applied to multiple/any drawable class. Not just a single class. 
 	- modified constructors of all non-players to make locations and velocities random within the limits defined by the user in the XML and size of the world.
 
 
