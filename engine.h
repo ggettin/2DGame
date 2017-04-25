@@ -6,6 +6,7 @@
 #include "world.h"
 #include "viewport.h"
 #include "twoWaySprite.h"
+#include "smartSprite.h"
 #include "Player.h"
 #include "hud.h"
 

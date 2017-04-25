@@ -10,6 +10,8 @@
 
 <queueMax>100</queueMax>
 
+<safeDistance>5</safeDistance>
+
 <maxFrames>400</maxFrames>
 <username>ggettin and sepaul</username>
 
@@ -53,8 +55,8 @@
   <initialVelocity x="250" y="100"/>
   <slowDown>0</slowDown>
   <speed>
-    <X min="-250" max="400"  />
-    <Y min="-150" max="400"  />
+    <X min="-250" max="800"  />
+    <Y min="-150" max="800"  />
   </speed>
   <scale>
     <min>1.2</min>

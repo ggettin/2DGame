@@ -3,7 +3,8 @@
 
 FrameFactory*  FrameFactory::instance = NULL;
 RenderContext* RenderContext::instance = NULL;
-
+float SmartSprite::
+  safeDistance  = Gamedata::getInstance().getXmlInt("safeDistance");
 int main(int, char*[]) {
    try {
       Engine engine;

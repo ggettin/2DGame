@@ -26,6 +26,7 @@ OBJS = \
 	twoWaySprite.o \
 	hud.o\
 	player.o \
+	smartSprite.o \
 	main.o
 EXEC = run
 
