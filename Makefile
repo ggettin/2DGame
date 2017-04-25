@@ -27,6 +27,8 @@ OBJS = \
 	hud.o\
 	player.o \
 	smartSprite.o \
+	collisionStrategy.o \
+	bullet.o \
 	main.o
 EXEC = run
 
