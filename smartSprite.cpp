@@ -10,7 +10,7 @@ float distance(float x1, float y1, float x2, float y2) {
 }
 
 SmartSprite::SmartSprite(const std::string& name) :
- Sprite(name),
+ MultiSprite(name),
  // io(IOmod::getInstance()),
  // playerPos(),
  // playerWidth(w),
@@ -26,7 +26,7 @@ void SmartSprite::goUp()    { setVelocityY( -fabs(getVelocityY()) ); }
 void SmartSprite::goDown()  { setVelocityY( fabs(getVelocityY()) ); }
 
 void SmartSprite::draw() const {
-  Sprite::draw();
+  MultiSprite::draw();
   // int x = 10+ getX() - Viewport::getInstance().getX();
   // int y = 10+ getY() - Viewport::getInstance().getY();
   // std::stringstream strm;
@@ -35,7 +35,7 @@ void SmartSprite::draw() const {
 }
 
 void SmartSprite::update(Uint32 ticks) {
-  Sprite::update(ticks);
+  MultiSprite::update(ticks);
   float x= getX()+getFrame()->getWidth()/2;
   float y= getY()+getFrame()->getHeight()/2;
   float ex= playerPos[0]+playerWidth/2;
@@ -43,15 +43,16 @@ void SmartSprite::update(Uint32 ticks) {
   float distanceToEnemy = distance( x, y, ex, ey );
 
   if  ( currentMode == NORMAL ) {
-    if(distanceToEnemy < safeDistance) currentMode = EVADE;
+    if(distanceToEnemy < safeDistance) currentMode = ATTACK;
   }
-  else if  ( currentMode == EVADE ) {
-    if(distanceToEnemy > safeDistance) currentMode=NORMAL;
+  else if  ( currentMode == ATTACK ) {
+    if(distanceToEnemy > safeDistance) currentMode = NORMAL;
     else {
-      if ( x < ex ) goLeft();
-      if ( x > ex ) goRight();
-      if ( y < ey ) goUp();
-      if ( y > ey ) goDown();
+		 std::cout << "Attack" << '\n';
+      if ( x < ex ) goRight();
+      if ( x > ex ) goLeft();
+      if ( y < ey ) goDown();
+      if ( y > ey ) goUp();
     }
   }
 }

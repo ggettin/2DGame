@@ -24,7 +24,7 @@ public:
   virtual void update(Uint32 ticks) = 0;
 
   const std::string& getName() const { return name; }
-  void setName(const std::string& n) { name = n;    }
+  void setName(const std::string& n) { name = n; }
 
   virtual const Frame* getFrame() const = 0;
 

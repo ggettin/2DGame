@@ -1,11 +1,11 @@
 #include <iostream>
-#include "sprite.h"
+#include "multiSprite.h"
 // #include "ioMod.h"
 
 // SmartSprite is an observer of subject SubjectSprite, which
 // in this example is a spinning star.
 
-class SmartSprite : public Sprite {
+class SmartSprite : public MultiSprite {
 public:
   SmartSprite(const std::string&);
   void draw() const;
@@ -21,7 +21,7 @@ public:
   void setPlayerPos(const Vector2f& p) { playerPos = p; }
 
 private:
-  enum MODE {NORMAL, EVADE};
+  enum MODE {NORMAL, ATTACK};
   // IOmod& io;
   Vector2f playerPos;
   int playerWidth;

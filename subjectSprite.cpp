@@ -3,7 +3,7 @@
 #include "subjectSprite.h"
 
 SubjectSprite::SubjectSprite( const std::string& name) :
-  MultiSprite(name),
+  Player(name),
   observers()
 { }
 
@@ -15,7 +15,7 @@ SubjectSprite::SubjectSprite( const std::string& name) :
 // { }
 
 SubjectSprite::SubjectSprite(const SubjectSprite& s) :
-  MultiSprite(s),
+  Player(s),
   observers(s.observers)
   { }
 
@@ -31,7 +31,8 @@ void SubjectSprite::detach( SmartSprite* o ) {
 }
 
 void SubjectSprite::update(Uint32 ticks) {
-  MultiSprite::update(ticks);
+  Player::update(ticks);
+  // std::cout << observers.size() << '\n';
   std::list<SmartSprite*>::iterator ptr = observers.begin();
   while ( ptr != observers.end() ) {
     (*ptr)->setPlayerPos( getPosition() );

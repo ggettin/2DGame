@@ -3,9 +3,9 @@
 #include <vector>
 #include <list>
 #include "smartSprite.h"
-#include "multisprite.h"
+#include "Player.h"
 
-class SubjectSprite : public MultiSprite {
+class SubjectSprite : public Player {
 public:
   SubjectSprite(const std::string&);
   // SubjectSprite(const std::string&, const Vector2f& pos,

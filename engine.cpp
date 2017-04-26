@@ -25,7 +25,7 @@ Engine::~Engine() {
   // for(auto sprite : sprites){
   //   delete sprite;
   // }
-  std::vector<Player*>::iterator it = sprites.begin();
+  std::vector<SubjectSprite*>::iterator it = sprites.begin();
 
   while ( it != sprites.end() ) {
     delete *it;
@@ -37,36 +37,37 @@ Engine::~Engine() {
 }
 
 Engine::Engine() :
-  rc( RenderContext::getInstance() ),
-  io( IOmod::getInstance() ),
-  clock( Clock::getInstance() ),
-  renderer( rc->getRenderer() ),
-  water("water", Gamedata::getInstance().getXmlInt("water/factor") ),
-  coral("coral", Gamedata::getInstance().getXmlInt("coral/factor") ),
-  viewport( Viewport::getInstance() ),
-  hud( new HUD()),
-  hudOn(true),
-  sprites(),
-  nontracker_sprite(),
-  //player("scuba"),
-  currentSprite(-1),
+	rc( RenderContext::getInstance() ),
+	io( IOmod::getInstance() ),
+	clock( Clock::getInstance() ),
+	renderer( rc->getRenderer() ),
+	water("water", Gamedata::getInstance().getXmlInt("water/factor") ),
+	coral("coral", Gamedata::getInstance().getXmlInt("coral/factor") ),
+	viewport( Viewport::getInstance() ),
+	hud( new HUD()),
+	hudOn(true),
+	sprites(),
+	nontracker_sprite(),
+	//player("scuba"),
+	currentSprite(-1),
 
 
 
-  makeVideo( false ){
+	makeVideo( false )
+{
 
-  makeExtras();
 
-  // for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
-  //   nontracker_sprite.push_back( new MultiSprite("jellyFish") );
-  // }
-  // for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
-  //   //sprites.push_back( new twoWaySprite("shark") );
-  // }
-  sprites.push_back( new Player("Pepe") );
 
-  switchSprite();
-  std::cout << "Loading complete" << std::endl;
+	// for( int i = 0; i < Gamedata::getInstance().getXmlInt("jellyFish/count"); i++){
+	//   nontracker_sprite.push_back( new MultiSprite("jellyFish") );
+	// }
+	// for( int i = 0; i < Gamedata::getInstance().getXmlInt("shark/count"); i++){
+	//   //sprites.push_back( new twoWaySprite("shark") );
+	// }
+	sprites.push_back( new SubjectSprite("Pepe") );
+	makeExtras();
+	switchSprite();
+	std::cout << "Loading complete" << std::endl;
 }
 
 
@@ -81,12 +82,12 @@ void Engine::makeExtras(){
   }
 
   for( int i = 0; i < jellyFishCount; i++){
-    Drawable *tempSprite = new MultiSprite("jellyFish");
+    Drawable *tempSprite = new SmartSprite("jellyFish");
     if (tempSprite->getScale() >= 0.9) {
       nontracker_sprite.push_back(tempSprite);
+		static_cast<SubjectSprite*>(sprites[0])->attach( (SmartSprite*)tempSprite );
     }else{
-      extras.push_back( tempSprite );
-
+      // extras.push_back( tempSprite );
     }
   }
   sort(extras.begin(), extras.end(), ScaleComp());
