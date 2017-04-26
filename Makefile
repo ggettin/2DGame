@@ -27,6 +27,7 @@ OBJS = \
 	hud.o\
 	player.o \
 	smartSprite.o \
+	subjectSprite \
 	main.o
 EXEC = run
 
