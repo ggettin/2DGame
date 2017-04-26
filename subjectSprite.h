@@ -3,7 +3,8 @@
 #include <vector>
 #include <list>
 #include "smartSprite.h"
-#include "Player.h"
+#include "player.h"
+#include "bulletPool.h"
 
 class SubjectSprite : public Player {
 public:
@@ -12,11 +13,17 @@ public:
   //               const Vector2f& vel, const std::vector<Frame*>& fms);
   SubjectSprite(const SubjectSprite&);
 
-  void update(Uint32 ticks);
+  virtual void update(Uint32 ticks);
   void attach( SmartSprite* o ) { observers.push_back(o); }
   void detach( SmartSprite* o );
+  void shoot();
+  virtual void draw() const;
+  virtual bool collideWith(const Drawable*) const;
 
 private:
   std::list<SmartSprite*> observers;
+  std::string bulletName;
+  BulletPool bullets;
+  float minSpeed;
   SubjectSprite& operator=(const SubjectSprite&);
 };

@@ -209,9 +209,10 @@ void Engine::play() {
             hudOn = !hudOn;
         }
 
-        // if ( keystate[SDL_SCANCODE_S] ) {
-        //   clock.toggleSloMo();
-        // }
+        if ( keystate[SDL_SCANCODE_SPACE] ) {
+           static_cast<SubjectSprite*>(sprites[0])->shoot();
+            std::cout << "shooting" << std::endl;
+        }
         if ( keystate[SDL_SCANCODE_T] ) {
           switchSprite();
         }

@@ -30,6 +30,7 @@ OBJS = \
 	subjectSprite.o \
 	collisionStrategy.o \
 	bullet.o \
+	bulletPool.o \
 	main.o
 EXEC = run
 

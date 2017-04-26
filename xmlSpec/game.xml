@@ -10,7 +10,7 @@
 
 <queueMax>100</queueMax>
 
-<safeDistance>5</safeDistance>
+<safeDistance>1500</safeDistance>
 
 <maxFrames>400</maxFrames>
 <username>ggettin and sepaul</username>
@@ -46,10 +46,30 @@
   <alpha>0</alpha>
 </font>
 
+<bubs>
+  <file>images/bubble2.png</file>
+  <interval>300</interval>
+  <distance>320</distance>
+  <startLoc x="100" y="100"/>
+  <speedX>200</speedX>
+  <speedY>0</speedY>
+  <speed>
+    <X min="-250" max="800"  />
+    <Y min="-150" max="800"  />
+  </speed>
+  <scale>
+    <min>0.35</min>
+    <max>0.35</max>
+  </scale>
+  <strategy>rectangular</strategy>
+</bubs>
+
+
 <Pepe>
   <startLoc x="900" y="250"/>
   <frames>3</frames>
   <count>2</count>
+  <bullet>bubs</bullet>
   <frameInterval>200</frameInterval>
   <minFrameDelay>5</minFrameDelay>
   <initialVelocity x="250" y="100"/>
