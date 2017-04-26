@@ -10,7 +10,8 @@
 
 <queueMax>100</queueMax>
 
-<safeDistance>1500</safeDistance>
+
+<safeDistance>500</safeDistance>
 
 <maxFrames>400</maxFrames>
 <username>ggettin and sepaul</username>

@@ -87,7 +87,7 @@ void Engine::makeExtras(){
       nontracker_sprite.push_back(tempSprite);
 		static_cast<SubjectSprite*>(sprites[0])->attach( (SmartSprite*)tempSprite );
     }else{
-      // extras.push_back( tempSprite );
+      extras.push_back( tempSprite );
     }
   }
   sort(extras.begin(), extras.end(), ScaleComp());
