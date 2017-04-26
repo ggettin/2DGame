@@ -40,6 +40,7 @@ private:
   void makeExtras();
   void draw() const;
   void update(Uint32);
+  void checkForCollisions();
 
   Engine(const Engine&) = delete;
   Engine& operator=(const Engine&) = delete;
