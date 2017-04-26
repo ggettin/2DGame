@@ -48,7 +48,6 @@ void SmartSprite::update(Uint32 ticks) {
   else if  ( currentMode == ATTACK ) {
     if(distanceToEnemy > safeDistance) currentMode = NORMAL;
     else {
-		 std::cout << "Attack" << '\n';
       if ( x < ex ) goRight();
       if ( x > ex ) goLeft();
       if ( y < ey ) goDown();
