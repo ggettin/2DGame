@@ -7,7 +7,7 @@
 #include "viewport.h"
 #include "twoWaySprite.h"
 #include "SubjectSprite.h"
-#include "Player.h"
+#include "player.h"
 #include "hud.h"
 
 class Engine {
