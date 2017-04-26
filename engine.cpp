@@ -170,38 +170,38 @@ void Engine::update(Uint32 ticks) {
 
 void Engine::checkForCollisions(){
 	// sprites[0] is the spinning star:
-  Player* player = static_cast<Player*>( sprites[0] );
-  for (unsigned i = 0; i < nontracker_sprites.size(); ++i) {
-    SmartSprite* sprite = static_cast<SmartSprite*>( sprites[i] );
-    ExplodingSprite* e = dynamic_cast<ExplodingSprite*>(sprite);
-    if ( e && e->chunkCount() == 0 ) {
-
-
-		/******** Dont think we need this part
-		// Make a smart sprite
-      // SmartSprite* ss =
-      //   new SmartSprite(sprite->getName(),sprite->getPosition(),
-      //                   sprite->getFrame()->getWidth()/2,
-      //                   sprite->getFrame()->getHeight()/2);
-      // sprites[i] = ss;
-      // delete sprite;
-      // static_cast<SubjectSprite*>(sprites[0])->attach(ss);
-      // ++numberOfSmart;
-		*************************************************/
-
-
-
-    }
-    else if ( !e && player->collidedWith(sprite) ) {
-      if ( dynamic_cast<SmartSprite*>(sprite) ) {
-        static_cast<SubjectSprite*>(sprites[0])->
-          detach(static_cast<SmartSprite*>(sprite) );
-      }
-      sprites[i] = new ExplodingSprite(sprite);
-      delete sprite;
-      if ( numberOfYellow ) --numberOfYellow;
-    }
- }
+ //  Player* player = static_cast<Player*>( sprites[0] );
+ //  for (unsigned i = 0; i < nontracker_sprites.size(); ++i) {
+ //    SmartSprite* sprite = static_cast<SmartSprite*>( sprites[i] );
+ //    ExplodingSprite* e = dynamic_cast<ExplodingSprite*>(sprite);
+ //    if ( e && e->chunkCount() == 0 ) {
+ //
+ //
+ // 	/******** Dont think we need this part
+ // 	// Make a smart sprite
+ //      // SmartSprite* ss =
+ //      //   new SmartSprite(sprite->getName(),sprite->getPosition(),
+ //      //                   sprite->getFrame()->getWidth()/2,
+ //      //                   sprite->getFrame()->getHeight()/2);
+ //      // sprites[i] = ss;
+ //      // delete sprite;
+ //      // static_cast<SubjectSprite*>(sprites[0])->attach(ss);
+ //      // ++numberOfSmart;
+ // 	*************************************************/
+ //
+ //
+ //
+ // }
+ //    else if ( !e && player->collidedWith(sprite) ) {
+ //      if ( dynamic_cast<SmartSprite*>(sprite) ) {
+ //        static_cast<SubjectSprite*>(sprites[0])->
+ //          detach(static_cast<SmartSprite*>(sprite) );
+ //      }
+ //      sprites[i] = new ExplodingSprite(sprite);
+ //      delete sprite;
+ //      if ( numberOfYellow ) --numberOfYellow;
+ //    }
+ // }
 }
 
 void Engine::switchSprite(){

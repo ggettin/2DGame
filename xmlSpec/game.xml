@@ -67,7 +67,7 @@
 
 
 <Pepe>
-  <startLoc x="900" y="250"/>
+  <startLoc x="100" y="250"/>
   <frames>3</frames>
   <count>2</count>
   <bullet>bubs</bullet>
@@ -142,7 +142,10 @@
 
 <jellyFish>
   <file>images/jellyFish.png</file>
-  <startLoc x="120" y="140"/>
+  <startLoc>
+	  <X min="200" max="1920"  />
+	  <Y min="0" max="700"  />
+  </startLoc>
   <frames>8</frames>
   <count>15</count>
   <frameInterval>200</frameInterval>

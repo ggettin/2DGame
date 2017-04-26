@@ -12,10 +12,12 @@ void MultiSprite::advanceFrame(Uint32 ticks) {
 
 MultiSprite::MultiSprite( const std::string& name) :
   Drawable(name,
-		Vector2f(Gamedata::getInstance().getRandInRange(
-								0, Gamedata::getInstance().getXmlInt("world/width")),
-						Gamedata::getInstance().getRandInRange(
-								0, Gamedata::getInstance().getXmlInt("world/height"))),
+	  Vector2f(Gamedata::getInstance().getRandInRange(
+							  Gamedata::getInstance().getXmlInt(name + "/startLoc/X/min"),
+							  Gamedata::getInstance().getXmlInt(name + "/startLoc/X/max")),
+					  Gamedata::getInstance().getRandInRange(
+							  Gamedata::getInstance().getXmlInt(name + "/startLoc/Y/min"),
+							  Gamedata::getInstance().getXmlInt(name + "/startLoc/Y/max"))),
 	 Vector2f(Gamedata::getInstance().getRandInRange(
 								Gamedata::getInstance().getXmlInt(name + "/speed/X/min"),
 								Gamedata::getInstance().getXmlInt(name + "/speed/X/max")),
