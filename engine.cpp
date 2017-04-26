@@ -105,7 +105,36 @@ void Engine::draw() const {
   }
   coral.draw();
 
-  int fps = clock.getFps();
+  //int fps = clock.getFps();
+  if (hudOn) {
+
+    hud->drawHUD();
+    //viewport.draw();
+    std::stringstream strm;
+    strm << "Pepe the Scuba Diver";
+    io.writeText(strm.str(), 20, 20);
+    strm.str(std::string());
+    // strm << "Seconds: " << clock.getSeconds();
+    // io.writeText(strm.str(), 20, 50);
+    // strm.str(std::string());
+    // strm << "Avg. FPS: " << clock.calcAvgFPS(fps);
+    // io.writeText(strm.str(), 20, 80);
+    //strm.str(std::string());
+    strm << "Up: W" ;
+    io.writeText(strm.str(), 20, 110);
+    strm.str(std::string());
+    strm << "Left: A" ;
+    io.writeText(strm.str(), 20, 140);
+    strm.str(std::string());
+    strm << "Down: S" ;
+    io.writeText(strm.str(), 150, 110);
+    strm.str(std::string());
+    strm << "Right: D" ;
+    io.writeText(strm.str(), 150, 140);
+
+  }
+
+
 
   for(auto* s : sprites) s->draw();
   while(i < extras.size()){
@@ -124,33 +153,16 @@ void Engine::draw() const {
 
 
 
-  if (hudOn) {
 
-    hud->drawHUD();
-    //viewport.draw();
-    std::stringstream strm;
-    strm << "Pepe the Scuba Diver";
-    io.writeText(strm.str(), 20, 20);
-    strm.str(std::string());
-    strm << "Seconds: " << clock.getSeconds();
-    io.writeText(strm.str(), 20, 50);
-    strm.str(std::string());
-    strm << "Avg. FPS: " << clock.calcAvgFPS(fps);
-    io.writeText(strm.str(), 20, 80);
-    strm.str(std::string());
-    strm << "Up: W" ;
-    io.writeText(strm.str(), 20, 110);
-    strm.str(std::string());
-    strm << "Left: A" ;
-    io.writeText(strm.str(), 20, 140);
-    strm.str(std::string());
-    strm << "Down: S" ;
-    io.writeText(strm.str(), 150, 110);
-    strm.str(std::string());
-    strm << "Right: D" ;
-    io.writeText(strm.str(), 150, 140);
-
-  }
+  // std::stringstream stream;
+  // stream << "Active bullets: " << bulletList.size();
+  // IOmod::getInstance().
+  //   writeText(stream.str(), 500, 30);
+  // stream.clear();
+  // stream.str("");
+  // stream << "Bullet pool: " << freeList.size();
+  // IOmod::getInstance().
+  //   writeText(stream.str(), 500, 60);
 
 
 
