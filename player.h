@@ -22,6 +22,9 @@ public:
   void up();
   void down();
 
+  // bool collidedWith(const Drawable* d) const;
+
+
 protected:
   std::vector<Frame *> frames;
   const std::vector<Frame *> framesLeft;
@@ -35,6 +38,7 @@ protected:
   int worldHeight;
   int frameWidth;
   int frameHeight;
+
 
   Vector2f initialVelocity;
   float slowDown;

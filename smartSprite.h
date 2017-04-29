@@ -1,5 +1,6 @@
 #include <iostream>
 #include "multiSprite.h"
+#include "bulletPool.h"
 // #include "ioMod.h"
 
 // SmartSprite is an observer of subject SubjectSprite, which
@@ -20,12 +21,15 @@ public:
   static float getSafeDistance() { return safeDistance; }
   void setPlayerPos(const Vector2f& p) { playerPos = p; }
 
+  bool collidedWith(const Drawable* d) const;
+
 private:
   enum MODE {NORMAL, ATTACK};
   // IOmod& io;
   Vector2f playerPos;
   int playerWidth;
   int playerHeight;
+  CollisionStrategy* strategy;
   static float safeDistance;
   MODE currentMode;
   SmartSprite(const SmartSprite &);

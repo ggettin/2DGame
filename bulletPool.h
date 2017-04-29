@@ -15,6 +15,7 @@ public:
   unsigned int freeCount()  const { return freeList.size(); }
   bool shooting() const { return bulletList.empty(); }
   bool collidedWith(const Drawable* obj) const;
+  std::list<Bullet> getBulletList() const {return bulletList;}
 private:
   std::string name;
   CollisionStrategy* strategy;

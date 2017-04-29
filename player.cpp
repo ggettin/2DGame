@@ -53,6 +53,9 @@ Player::Player(const Player& s) :
   slowDown(s.slowDown)
   { }
 
+// bool Player::collidedWith(const Drawable* d) const {
+//  return strategy->execute(*this, *d);
+// }
 // void Player::draw() const {
 //   frames[currentFrame]->draw(getX(), getY());
 // }

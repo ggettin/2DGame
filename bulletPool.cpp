@@ -31,7 +31,7 @@ BulletPool::BulletPool(const BulletPool& b) :
   strategy(b.strategy),
   frameInterval(b.frameInterval),
   timeSinceLastFrame( b.timeSinceLastFrame ),
-  bulletList(b.bulletList), 
+  bulletList(b.bulletList),
   freeList(b.freeList)
 { }
 
@@ -69,7 +69,7 @@ void BulletPool::shoot(const Vector2f& position, const Vector2f& velocity) {
 	}
 }
 
-void BulletPool::draw() const { 
+void BulletPool::draw() const {
   std::stringstream stream;
   stream << "Active bullets: " << bulletList.size();
   IOmod::getInstance().
@@ -84,7 +84,7 @@ void BulletPool::draw() const {
   }
 }
 
-void BulletPool::update(Uint32 ticks) { 
+void BulletPool::update(Uint32 ticks) {
 	timeSinceLastFrame += ticks;
   std::list<Bullet>::iterator ptr = bulletList.begin();
   while (ptr != bulletList.end()) {
@@ -92,7 +92,7 @@ void BulletPool::update(Uint32 ticks) {
     if (ptr->goneTooFar()) {  // Check to see if we should free a Bullet
       freeList.push_back(*ptr);
       ptr = bulletList.erase(ptr);
-    }   
+    }
     else ++ptr;
   }
 }

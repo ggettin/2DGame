@@ -9,6 +9,7 @@
 #include "frameGenerator.h"
 #include "twoWaySprite.h"
 #include "audio.h"
+#include "explodingSprite.h"
 
 
 class ScaleComp {
@@ -182,38 +183,42 @@ void Engine::update(Uint32 ticks) {
 
 void Engine::checkForCollisions(){
 	// sprites[0] is the spinning star:
- //  Player* player = static_cast<Player*>( sprites[0] );
- //  for (unsigned i = 0; i < nontracker_sprites.size(); ++i) {
- //    SmartSprite* sprite = static_cast<SmartSprite*>( sprites[i] );
- //    ExplodingSprite* e = dynamic_cast<ExplodingSprite*>(sprite);
- //    if ( e && e->chunkCount() == 0 ) {
- //
- //
- // 	/******** Dont think we need this part
- // 	// Make a smart sprite
- //      // SmartSprite* ss =
- //      //   new SmartSprite(sprite->getName(),sprite->getPosition(),
- //      //                   sprite->getFrame()->getWidth()/2,
- //      //                   sprite->getFrame()->getHeight()/2);
- //      // sprites[i] = ss;
- //      // delete sprite;
- //      // static_cast<SubjectSprite*>(sprites[0])->attach(ss);
- //      // ++numberOfSmart;
- // 	*************************************************/
- //
- //
- //
- // }
- //    else if ( !e && player->collidedWith(sprite) ) {
- //      if ( dynamic_cast<SmartSprite*>(sprite) ) {
- //        static_cast<SubjectSprite*>(sprites[0])->
- //          detach(static_cast<SmartSprite*>(sprite) );
- //      }
- //      sprites[i] = new ExplodingSprite(sprite);
- //      delete sprite;
- //      if ( numberOfYellow ) --numberOfYellow;
- //    }
- // }
+  SubjectSprite* player = static_cast<SubjectSprite*>( sprites[0] );
+  std::list<Bullet> bullets = player->getBullets();
+
+
+  for (unsigned i = 0; i < nontracker_sprite.size(); ++i) {
+
+	  SmartSprite* sprite = static_cast<SmartSprite*>( nontracker_sprite[i] );
+	  ExplodingSprite* e = dynamic_cast<ExplodingSprite*>(sprite);
+
+	  if ( e && e->chunkCount() == 0 ) {
+	 // Make a smart sprite
+		 SmartSprite* ss = new SmartSprite(sprite->getName());
+		 nontracker_sprite[i] = ss;
+		 delete sprite;
+		 static_cast<SubjectSprite*>(sprites[0])->attach(ss);
+		 // ++numberOfSmart;
+	 }else{
+
+		 for(unsigned j = 0; j < bullets->bulletCount(); ++j){
+
+			if ( !e && sprite->collidedWith(player) ) {
+			   if ( dynamic_cast<SmartSprite*>(sprite) ) {
+				  static_cast<SubjectSprite*>(sprites[0])->
+					 detach(static_cast<SmartSprite*>(sprite) );
+			   }
+			   nontracker_sprite[i] = new ExplodingSprite(sprite);
+			   delete sprite;
+			   // if ( numberOfYellow ) --numberOfYellow;
+		   }
+	  }
+	 }
+
+
+ }
+
+
 }
 
 void Engine::switchSprite(){

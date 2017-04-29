@@ -25,6 +25,10 @@ void SmartSprite::goRight() { setVelocityX( fabs(getVelocityX()) ); }
 void SmartSprite::goUp()    { setVelocityY( -fabs(getVelocityY()) ); }
 void SmartSprite::goDown()  { setVelocityY( fabs(getVelocityY()) ); }
 
+bool SmartSprite::collidedWith(const Drawable* d) const {
+  return strategy->execute(*this, *d);
+}
+
 void SmartSprite::draw() const {
   MultiSprite::draw();
   // int x = 10+ getX() - Viewport::getInstance().getX();

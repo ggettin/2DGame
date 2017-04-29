@@ -4,7 +4,7 @@
 #include <list>
 #include "smartSprite.h"
 #include "player.h"
-#include "bulletPool.h"
+// #include "bulletPool.h"
 
 class SubjectSprite : public Player {
 public:
@@ -19,11 +19,12 @@ public:
   void shoot();
   virtual void draw() const;
   virtual bool collideWith(const Drawable*) const;
+  BulletPool *getBullets() const {return bullets;}
 
 private:
   std::list<SmartSprite*> observers;
   std::string bulletName;
-  BulletPool bullets;
+  BulletPool *bullets;
   float minSpeed;
   SubjectSprite& operator=(const SubjectSprite&);
 };

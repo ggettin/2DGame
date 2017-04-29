@@ -31,6 +31,8 @@ OBJS = \
 	collisionStrategy.o \
 	bullet.o \
 	bulletPool.o \
+	chunk.o \
+	explodingSprite.o \
 	main.o
 EXEC = run
 
