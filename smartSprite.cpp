@@ -15,7 +15,7 @@ SmartSprite::SmartSprite(const std::string& name) :
  // playerPos(),
  // playerWidth(w),
  // playerHeight(h),
- currentMode(NORMAL)
+currentMode(NORMAL)
 { }
 
 void SmartSprite::goLeft()  {

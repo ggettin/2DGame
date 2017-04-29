@@ -3,6 +3,7 @@
 #include "bulletPool.h"
 // #include "ioMod.h"
 
+
 // SmartSprite is an observer of subject SubjectSprite, which
 // in this example is a spinning star.
 
@@ -34,4 +35,5 @@ private:
   MODE currentMode;
   SmartSprite(const SmartSprite &);
   SmartSprite& operator=(const SmartSprite &rhs);
+
 };
