@@ -126,7 +126,7 @@ void Engine::draw() const {
     io.writeText(strm.str(), 20, 110);
 	 strm.str(std::string());
 	 strm << "[G]Mode: ";
-	 if(godMode) strm << "on"; else strm << "on";
+	 if(godMode) strm << "on"; else strm << "off";
     io.writeText(strm.str(), 110, 110);
 	 strm.str(std::string());
 	 strm << "Up: W" ;
@@ -192,7 +192,7 @@ void Engine::checkForCollisions(){
 			nontracker_sprite[i] = new ExplodingSprite(sprite);
 			// delete sprite;
 		}
-		if( !e && player->collideWith(sprite)){
+		if( !e && player->collideWith(sprite) && !godMode){
 			std::cout << "Pepe got hurt" << '\n';
 			player->hurt();
 		}
@@ -242,6 +242,7 @@ void Engine::play() {
             hudOn = !hudOn;
         }
 		  if ( keystate[SDL_SCANCODE_G] ) {
+			  std::cout << "changing godmode" << '\n';
             godMode = !godMode;
         }
 
