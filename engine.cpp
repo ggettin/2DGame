@@ -252,9 +252,7 @@ void Engine::play() {
 
         if ( keystate[SDL_SCANCODE_B] ) {
 
-          aud->playSound("sounds/fishbubbles.wav", SDL_MIX_MAXVOLUME / 2);
-          SDL_Delay(100);
-          /* End Simple-SDL2-Audio */
+          
 
 
           int additions = Gamedata::getInstance().getXmlInt("bubble/additions");
@@ -298,6 +296,10 @@ void Engine::play() {
 		if ( keystate[SDL_SCANCODE_SPACE] ) {
 			static_cast<SubjectSprite*>(sprites[0])->shoot();
 			 std::cout << "shooting" << std::endl;
+
+       aud->playSound("sounds/fishbubbles.wav", SDL_MIX_MAXVOLUME / 2);
+       //SDL_Delay(25);
+          /* End Simple-SDL2-Audio */
 		}
     }
     ticks = clock.getElapsedTicks();
