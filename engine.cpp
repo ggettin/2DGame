@@ -84,7 +84,7 @@ void Engine::makeExtras(){
 
   for( int i = 0; i < jellyFishCount; i++){
     Drawable *tempSprite = new SmartSprite("jellyFish");
-    if (tempSprite->getScale() >= 0.9) {
+    if (tempSprite->getScale() >= 0.8) {
       nontracker_sprite.push_back(tempSprite);
 		static_cast<SubjectSprite*>(sprites[0])->attach( (SmartSprite*)tempSprite );
     }else{
@@ -176,6 +176,7 @@ void Engine::update(Uint32 ticks) {
   for(auto* f : nontracker_sprite) f->update(ticks);
  // player.update(ticks);
 
+  checkForCollisions();
   water.update();
   coral.update();
   viewport.update(); // always update viewport last
@@ -183,43 +184,27 @@ void Engine::update(Uint32 ticks) {
 
 void Engine::checkForCollisions(){
 	// sprites[0] is the spinning star:
-  SubjectSprite* player = static_cast<SubjectSprite*>( sprites[0] );
-  std::list<Bullet> bullets = player->getBullets();
+	  SubjectSprite* player = static_cast<SubjectSprite*>( sprites[0] );
+	  BulletPool *bullets = player->getBullets();
 
-
-  for (unsigned i = 0; i < nontracker_sprite.size(); ++i) {
-
-	  SmartSprite* sprite = static_cast<SmartSprite*>( nontracker_sprite[i] );
-	  ExplodingSprite* e = dynamic_cast<ExplodingSprite*>(sprite);
-
-	  if ( e && e->chunkCount() == 0 ) {
-	 // Make a smart sprite
-		 SmartSprite* ss = new SmartSprite(sprite->getName());
-		 nontracker_sprite[i] = ss;
-		 delete sprite;
-		 static_cast<SubjectSprite*>(sprites[0])->attach(ss);
-		 // ++numberOfSmart;
-	 }else{
-
-		 for(unsigned j = 0; j < bullets->bulletCount(); ++j){
-
-			if ( !e && sprite->collidedWith(player) ) {
-			   if ( dynamic_cast<SmartSprite*>(sprite) ) {
-				  static_cast<SubjectSprite*>(sprites[0])->
-					 detach(static_cast<SmartSprite*>(sprite) );
-			   }
-			   nontracker_sprite[i] = new ExplodingSprite(sprite);
-			   delete sprite;
-			   // if ( numberOfYellow ) --numberOfYellow;
-		   }
+	  for (unsigned i = 0; i < nontracker_sprite.size(); ++i) {
+	    ExplodingSprite* e = dynamic_cast<ExplodingSprite*>(nontracker_sprite[i]);
+	    SmartSprite* sprite = static_cast<SmartSprite*>( nontracker_sprite[i] );
+	    if ( e && e->chunkCount() == 0 ) {
+	      // Make a smart sprite
+	      nontracker_sprite[i] = new SmartSprite(sprite->getName());
+	      // delete sprite;
+	    }
+	    if ( !e && bullets->collidedWith(sprite) ) {
+			std::cout << "this is happening" << '\n';
+	      nontracker_sprite[i] = new ExplodingSprite(sprite);
+	      // delete sprite;
+		}else if( player->collideWith(sprite)){
+			// sprites[0] = new ExplodingSprite(player->getName());
+		}
 	  }
-	 }
-
-
- }
-
-
 }
+
 
 void Engine::switchSprite(){
   ++currentSprite;

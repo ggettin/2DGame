@@ -157,6 +157,10 @@
     <min>0.4</min>
     <max>1.1</max>
   </scale>
+  <chunk>
+	  <size>9</size>
+	  <distance>200</distance>
+  </chunk>
   <transparency>true</transparency>
 </jellyFish>
 
