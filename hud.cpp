@@ -7,7 +7,7 @@ HUD::HUD() :
     rect->x = 12;
     rect->y = 16;
     rect->w = 245;
-    rect->h = 155;
+    rect->h = 185;
 }
 
 

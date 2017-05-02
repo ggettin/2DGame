@@ -2,11 +2,22 @@
 #include <cmath>
 #include "subjectSprite.h"
 
+
+CollisionStrategy* getStrat(const string& name) {
+  std::string sName = Gamedata::getInstance().getXmlStr(name+"/strategy");
+  if ( sName == "midpoint" ) return new MidPointCollisionStrategy;
+  if ( sName == "rectangular" ) return new RectangularCollisionStrategy;
+  //if ( sName == "perpixel" ) return new PerPixelCollisionStrategy;
+  throw std::string("No strategy in getStrategy");
+}
+
 SubjectSprite::SubjectSprite( const std::string& name) :
   Player(name),
   observers(),
   bulletName( Gamedata::getInstance().getXmlStr(name+"/bullet") ),
+  strategy( getStrat(name) ),
   bullets( new BulletPool(bulletName) ),
+  lives(5),
   minSpeed( Gamedata::getInstance().getXmlInt(bulletName+"/speedX") )
 { }
 
@@ -51,7 +62,7 @@ void SubjectSprite::shoot() {
 }
 
 bool SubjectSprite::collideWith(const Drawable* obj) const {
-  return bullets->collidedWith( obj );
+  	return strategy->execute(*this, *obj);
 }
 
 void SubjectSprite::update(Uint32 ticks) {
@@ -62,4 +73,19 @@ void SubjectSprite::update(Uint32 ticks) {
     (*ptr)->setPlayerPos( getPosition() );
     ++ptr;
   }
+}
+
+void SubjectSprite::hurt() {
+	if(getX() > 100){
+		setX(getX() - 50);
+	}else{
+		setX(10);
+	}
+	if (lives > 0){
+		lives--;
+	}
+	if(lives == 0){
+		//cue restart
+	}
+	std::cout << lives << '\n';
 }

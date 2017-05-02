@@ -29,6 +29,7 @@ private:
   Viewport& viewport;
   HUD *hud;
   bool hudOn;
+  bool godMode;
 
   std::vector<SubjectSprite*> sprites;
   std::vector<Drawable*> extras;

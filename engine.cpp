@@ -47,6 +47,7 @@ Engine::Engine() :
 	viewport( Viewport::getInstance() ),
 	hud( new HUD()),
 	hudOn(true),
+	godMode(false),
 	sprites(),
 	nontracker_sprite(),
 	//player("scuba"),
@@ -84,7 +85,7 @@ void Engine::makeExtras(){
 
   for( int i = 0; i < jellyFishCount; i++){
     Drawable *tempSprite = new SmartSprite("jellyFish");
-    if (tempSprite->getScale() >= 0.8) {
+    if (tempSprite->getScale() >= 0.7) {
       nontracker_sprite.push_back(tempSprite);
 		static_cast<SubjectSprite*>(sprites[0])->attach( (SmartSprite*)tempSprite );
     }else{
@@ -98,7 +99,7 @@ void Engine::draw() const {
   water.draw();
   size_t i = 0;
   while (i < extras.size()){
-    if(extras[i]->getScale() >= 0.8){
+    if(extras[i]->getScale() >= 0.7){
       break;
     }
     extras[i]->draw();
@@ -114,24 +115,31 @@ void Engine::draw() const {
     std::stringstream strm;
     strm << "Pepe the Scuba Diver";
     io.writeText(strm.str(), 20, 20);
-    strm.str(std::string());
     // strm << "Seconds: " << clock.getSeconds();
     // io.writeText(strm.str(), 20, 50);
     // strm.str(std::string());
     // strm << "Avg. FPS: " << clock.calcAvgFPS(fps);
     // io.writeText(strm.str(), 20, 80);
     //strm.str(std::string());
-    strm << "Up: W" ;
+	 strm.str(std::string());
+	 strm << "Lives: " << sprites[0]->getLives();
     io.writeText(strm.str(), 20, 110);
-    strm.str(std::string());
-    strm << "Left: A" ;
+	 strm.str(std::string());
+	 strm << "[G]Mode: ";
+	 if(godMode) strm << "on"; else strm << "on";
+    io.writeText(strm.str(), 110, 110);
+	 strm.str(std::string());
+	 strm << "Up: W" ;
     io.writeText(strm.str(), 20, 140);
     strm.str(std::string());
+    strm << "Left: A" ;
+    io.writeText(strm.str(), 20, 170);
+    strm.str(std::string());
     strm << "Down: S" ;
-    io.writeText(strm.str(), 150, 110);
+    io.writeText(strm.str(), 150, 140);
     strm.str(std::string());
     strm << "Right: D" ;
-    io.writeText(strm.str(), 150, 140);
+    io.writeText(strm.str(), 150, 170);
 
   }
 
@@ -152,21 +160,6 @@ void Engine::draw() const {
   //io.writeText("Pepe the Scuba Diver", color, 50, 425);
 
 
-
-
-
-  // std::stringstream stream;
-  // stream << "Active bullets: " << bulletList.size();
-  // IOmod::getInstance().
-  //   writeText(stream.str(), 500, 30);
-  // stream.clear();
-  // stream.str("");
-  // stream << "Bullet pool: " << freeList.size();
-  // IOmod::getInstance().
-  //   writeText(stream.str(), 500, 60);
-
-
-
   SDL_RenderPresent(renderer);
 }
 
@@ -184,25 +177,27 @@ void Engine::update(Uint32 ticks) {
 
 void Engine::checkForCollisions(){
 	// sprites[0] is the spinning star:
-	  SubjectSprite* player = static_cast<SubjectSprite*>( sprites[0] );
-	  BulletPool *bullets = player->getBullets();
+	SubjectSprite* player = static_cast<SubjectSprite*>( sprites[0] );
+	BulletPool *bullets = player->getBullets();
 
-	  for (unsigned i = 0; i < nontracker_sprite.size(); ++i) {
-	    ExplodingSprite* e = dynamic_cast<ExplodingSprite*>(nontracker_sprite[i]);
-	    SmartSprite* sprite = static_cast<SmartSprite*>( nontracker_sprite[i] );
-	    if ( e && e->chunkCount() == 0 ) {
-	      // Make a smart sprite
-	      nontracker_sprite[i] = new SmartSprite(sprite->getName());
-	      // delete sprite;
-	    }
-	    if ( !e && bullets->collidedWith(sprite) ) {
-			std::cout << "this is happening" << '\n';
-	      nontracker_sprite[i] = new ExplodingSprite(sprite);
-	      // delete sprite;
-		}else if( player->collideWith(sprite)){
-			// sprites[0] = new ExplodingSprite(player->getName());
+	for (unsigned i = 0; i < nontracker_sprite.size(); ++i) {
+		ExplodingSprite* e = dynamic_cast<ExplodingSprite*>(nontracker_sprite[i]);
+		SmartSprite* sprite = static_cast<SmartSprite*>( nontracker_sprite[i] );
+		if ( e && e->chunkCount() == 0 ) {
+			// Make a smart sprite
+			nontracker_sprite[i] = new SmartSprite(sprite->getName());
+			// delete sprite;
 		}
-	  }
+		if ( !e && bullets->collidedWith(sprite) ) {
+			nontracker_sprite[i] = new ExplodingSprite(sprite);
+			// delete sprite;
+		}
+		if( !e && player->collideWith(sprite)){
+			std::cout << "Pepe got hurt" << '\n';
+			player->hurt();
+		}
+	}
+
 }
 
 
@@ -246,11 +241,10 @@ void Engine::play() {
         if ( keystate[SDL_SCANCODE_F1] ) {
             hudOn = !hudOn;
         }
-
-        if ( keystate[SDL_SCANCODE_SPACE] ) {
-           static_cast<SubjectSprite*>(sprites[0])->shoot();
-            std::cout << "shooting" << std::endl;
+		  if ( keystate[SDL_SCANCODE_G] ) {
+            godMode = !godMode;
         }
+
         if ( keystate[SDL_SCANCODE_T] ) {
           switchSprite();
         }
@@ -300,6 +294,10 @@ void Engine::play() {
         sprites[0]->down();
 
       }
+		if ( keystate[SDL_SCANCODE_SPACE] ) {
+			static_cast<SubjectSprite*>(sprites[0])->shoot();
+			 std::cout << "shooting" << std::endl;
+		}
     }
     ticks = clock.getElapsedTicks();
     if ( ticks > 0 ) {

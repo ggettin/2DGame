@@ -83,6 +83,7 @@
     <min>1.2</min>
     <max>1.2</max>
   </scale>
+  <strategy>rectangular</strategy>
   <transparency>true</transparency>
 </Pepe>
 
@@ -106,39 +107,6 @@
   <transparency>true</transparency>
 </PepeRight>
 
-
-
-<sharkLeft>
-  <file>images/sharkSwimLeft.png</file>
-  <startLoc x="120" y="140"/>
-  <frames>3</frames>
-  <frameInterval>200</frameInterval>
-  <speedX>-200</speedX>
-  <speedY>200</speedY>
-  <transparency>true</transparency>
-</sharkLeft>
-
-<sharkRight>
-  <file>images/sharkSwimRight.png</file>
-  <startLoc x="120" y="140"/>
-  <frames>3</frames>
-  <frameInterval>200</frameInterval>
-  <speedX>-200</speedX>
-  <speedY>200</speedY>
-  <transparency>true</transparency>
-</sharkRight>
-
-<shark>
-  <startLoc x="120" y="140"/>
-  <frames>3</frames>
-  <count>10</count>
-  <frameInterval>200</frameInterval>
-  <speed>
-    <X min="-250" max="250"  />
-    <Y min="-30" max="30"  />
-  </speed>
-  <transparency>true</transparency>
-</shark>
 
 <jellyFish>
   <file>images/jellyFish.png</file>
@@ -166,7 +134,7 @@
 
 <bubble>
   <file>images/bubble2.png</file>
-  <count>35</count>
+  <count>25</count>
   <speed>
     <X min="-175" max="175"  />
     <Y min="-175" max="175"  />
@@ -181,21 +149,6 @@
   <transparency>true</transparency>
 </bubble>
 
-
-<star>
-  <file>images/yellowstar32.png</file>
-  <maxSpeedX>-175</maxSpeedX>
-  <maxSpeedY>-175</maxSpeedY>
-  <transparency>true</transparency>
-</star>
-
-<greenorb>
-  <file>images/greenball.bmp</file>
-  <startLoc x="320" y="240"/>
-  <speedX>175</speedX>
-  <speedY>175</speedY>
-  <transparency>true</transparency>
-</greenorb>
 
 <context>
 	<width>960</width>

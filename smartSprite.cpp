@@ -11,10 +11,6 @@ float distance(float x1, float y1, float x2, float y2) {
 
 SmartSprite::SmartSprite(const std::string& name) :
  MultiSprite(name),
- // io(IOmod::getInstance()),
- // playerPos(),
- // playerWidth(w),
- // playerHeight(h),
 currentMode(NORMAL)
 { }
 
