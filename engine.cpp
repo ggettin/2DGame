@@ -195,6 +195,9 @@ void Engine::checkForCollisions(){
 		if( !e && player->collideWith(sprite) && !godMode){
 			std::cout << "Pepe got hurt" << '\n';
 			player->hurt();
+			if (player->getLives() == 0){
+
+			}
 		}
 	}
 
@@ -212,105 +215,104 @@ void Engine::switchSprite(){
 
 void Engine::play() {
 
-  SDL_Event event;
-  const Uint8* keystate;
-  bool done = false;
-  Uint32 ticks = clock.getElapsedTicks();
-  FrameGenerator frameGen;
+	SDL_Event event;
+	const Uint8* keystate;
+	bool done = false;
+	Uint32 ticks = clock.getElapsedTicks();
+	FrameGenerator frameGen;
 
-  if(SDL_Init(SDL_INIT_AUDIO) < 0)
-  {
-    return;
-  }
-  audio *aud = new audio();
+	if(SDL_Init(SDL_INIT_AUDIO) < 0)
+	{
+		return;
+	}
+	audio *aud = new audio();
 
-  while ( !done ) {
-    while ( SDL_PollEvent(&event) ) {
+	while ( !done ) {
+		while ( SDL_PollEvent(&event) ) {
 
-      keystate = SDL_GetKeyboardState(NULL);
-      if (event.type ==  SDL_QUIT) { done = true; break; }
-      if(event.type == SDL_KEYDOWN) {
-        if (keystate[SDL_SCANCODE_ESCAPE] || keystate[SDL_SCANCODE_Q]) {
-          done = true;
-          break;
-        }
-        if ( keystate[SDL_SCANCODE_P] ) {
-          if ( clock.isPaused() ) clock.unpause();
-          else clock.pause();
-        }
-        if ( keystate[SDL_SCANCODE_F1] ) {
-            hudOn = !hudOn;
-        }
-		  if ( keystate[SDL_SCANCODE_G] ) {
-			  std::cout << "changing godmode" << '\n';
-            godMode = !godMode;
-        }
+			keystate = SDL_GetKeyboardState(NULL);
+			if (event.type ==  SDL_QUIT) { done = true; break; }
+			if(event.type == SDL_KEYDOWN) {
+				if (keystate[SDL_SCANCODE_ESCAPE] || keystate[SDL_SCANCODE_Q]) {
+					done = true;
+					break;
+				}
+				if ( keystate[SDL_SCANCODE_P] ) {
+					if ( clock.isPaused() ) clock.unpause();
+					else clock.pause();
+				}
+				if ( keystate[SDL_SCANCODE_F1] ) {
+					hudOn = !hudOn;
+				}
+				if ( keystate[SDL_SCANCODE_G] ) {
+					std::cout << "changing godmode" << '\n';
+					godMode = !godMode;
+				}
 
-        if ( keystate[SDL_SCANCODE_T] ) {
-          switchSprite();
-        }
+				if ( keystate[SDL_SCANCODE_T] ) {
+					switchSprite();
+				}
 
-        if ( keystate[SDL_SCANCODE_B] ) {
-
-          
+				if ( keystate[SDL_SCANCODE_B] ) {
 
 
-          int additions = Gamedata::getInstance().getXmlInt("bubble/additions");
-          for (int i = 0; i < additions; i++){
-            extras.push_back( new Sprite("bubble") );
-          }
-          sort(extras.begin(), extras.end(), ScaleComp());
-
-        }
-        if (keystate[SDL_SCANCODE_F4] && !makeVideo) {
-          std::cout << "Initiating frame capture" << std::endl;
-          makeVideo = true;
-        }
-        else if (keystate[SDL_SCANCODE_F4] && makeVideo) {
-          std::cout << "Terminating frame capture" << std::endl;
-          makeVideo = false;
-        }
-      }
-
-      if (keystate[SDL_SCANCODE_A] && keystate[SDL_SCANCODE_D]){
-        sprites[0]->stop();
 
 
-      } else if (keystate[SDL_SCANCODE_A]){
-        sprites[0]->left();
+					int additions = Gamedata::getInstance().getXmlInt("bubble/additions");
+					for (int i = 0; i < additions; i++){
+						extras.push_back( new Sprite("bubble") );
+					}
+					sort(extras.begin(), extras.end(), ScaleComp());
 
-      } else if (keystate[SDL_SCANCODE_D]){
-        sprites[0]->right();
+				}
+				if (keystate[SDL_SCANCODE_F4] && !makeVideo) {
+					std::cout << "Initiating frame capture" << std::endl;
+					makeVideo = true;
+				}
+				else if (keystate[SDL_SCANCODE_F4] && makeVideo) {
+					std::cout << "Terminating frame capture" << std::endl;
+					makeVideo = false;
+				}
+			}
 
-      }
-      if (keystate[SDL_SCANCODE_W] && keystate[SDL_SCANCODE_S]){
-        sprites[0]->stop();
+			if (keystate[SDL_SCANCODE_A] && keystate[SDL_SCANCODE_D]){
+				sprites[0]->stop();
 
-      }else if (keystate[SDL_SCANCODE_W]){
-        sprites[0]->up();
 
-      }else if (keystate[SDL_SCANCODE_S]){
-        sprites[0]->down();
+			} else if (keystate[SDL_SCANCODE_A]){
+				sprites[0]->left();
 
-      }
-		if ( keystate[SDL_SCANCODE_SPACE] ) {
-			static_cast<SubjectSprite*>(sprites[0])->shoot();
-			 std::cout << "shooting" << std::endl;
+			} else if (keystate[SDL_SCANCODE_D]){
+				sprites[0]->right();
 
-       aud->playSound("sounds/fishbubbles.wav", SDL_MIX_MAXVOLUME / 2);
-       //SDL_Delay(25);
-          /* End Simple-SDL2-Audio */
+			}
+			if (keystate[SDL_SCANCODE_W] && keystate[SDL_SCANCODE_S]){
+				sprites[0]->stop();
+
+			}else if (keystate[SDL_SCANCODE_W]){
+				sprites[0]->up();
+
+			}else if (keystate[SDL_SCANCODE_S]){
+				sprites[0]->down();
+
+			}
+			if ( keystate[SDL_SCANCODE_SPACE] ) {
+				static_cast<SubjectSprite*>(sprites[0])->shoot();
+				std::cout << "shooting" << std::endl;
+
+				aud->playSound("sounds/fishbubbles.wav", SDL_MIX_MAXVOLUME / 2);
+				//SDL_Delay(25);
+				/* End Simple-SDL2-Audio */
+			}
 		}
-    }
-    ticks = clock.getElapsedTicks();
-    if ( ticks > 0 ) {
-      clock.incrFrame();
-      draw();
-      update(ticks);
-      if ( makeVideo ) {
-        frameGen.makeFrame();
-      }
-    }
-  }
-
+		ticks = clock.getElapsedTicks();
+		if ( ticks > 0 ) {
+			clock.incrFrame();
+			draw();
+			update(ticks);
+			if ( makeVideo ) {
+				frameGen.makeFrame();
+			}
+		}
+	}
 }
