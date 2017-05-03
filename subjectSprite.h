@@ -22,6 +22,7 @@ public:
   virtual bool collideWith(const Drawable*) const;
   BulletPool *getBullets() const {return bullets;}
   int getLives() const {return lives;}
+  void reset();
 
 private:
   std::list<SmartSprite*> observers;

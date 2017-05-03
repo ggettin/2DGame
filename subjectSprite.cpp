@@ -17,7 +17,7 @@ SubjectSprite::SubjectSprite( const std::string& name) :
   bulletName( Gamedata::getInstance().getXmlStr(name+"/bullet") ),
   strategy( getStrat(name) ),
   bullets( new BulletPool(bulletName) ),
-  lives(5),
+  lives(Gamedata::getInstance().getXmlInt(name+"/lives")),
   minSpeed( Gamedata::getInstance().getXmlInt(bulletName+"/speedX") )
 { }
 
@@ -88,4 +88,10 @@ void SubjectSprite::hurt() {
 		//cue restart
 	}
 	std::cout << lives << '\n';
+}
+
+void SubjectSprite::reset(){
+	lives = Gamedata::getInstance().getXmlInt(this->getName() + "/lives");
+	this->setPosition(Vector2f(Gamedata::getInstance().getXmlInt(this->getName()+"/startLoc/x"),
+				Gamedata::getInstance().getXmlInt(this->getName()+"/startLoc/y")));
 }

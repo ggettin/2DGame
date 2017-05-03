@@ -204,6 +204,9 @@ void Engine::checkForCollisions(){
 		if( !e && player->collideWith(sprite) && !godMode){
 			std::cout << "Pepe got hurt" << '\n';
 			player->hurt();
+			if (player->getLives() == 0){
+
+			}
 		}
 	}
 
@@ -221,11 +224,11 @@ void Engine::switchSprite(){
 
 void Engine::play() {
 
-  SDL_Event event;
-  const Uint8* keystate;
-  bool done = false;
-  Uint32 ticks = clock.getElapsedTicks();
-  FrameGenerator frameGen;
+	SDL_Event event;
+	const Uint8* keystate;
+	bool done = false;
+	Uint32 ticks = clock.getElapsedTicks();
+	FrameGenerator frameGen;
 
   if(SDL_Init(SDL_INIT_AUDIO) < 0)
   {

@@ -71,6 +71,7 @@
   <frames>3</frames>
   <count>2</count>
   <bullet>bubs</bullet>
+  <lives>5</lives>
   <frameInterval>200</frameInterval>
   <minFrameDelay>5</minFrameDelay>
   <initialVelocity x="250" y="100"/>
