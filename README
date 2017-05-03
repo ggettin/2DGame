@@ -6,11 +6,12 @@ Project no: Final
 
 Project due date: Tuesday, May 2
 
-Project description:  Final project that includes a player, Pepe, that can shoot bubbles at Jelly Fish (turn on sound to hear the bubbles!). Jelly Fish will explode upon contact with the bubbles and Pepe the Penguin will be pushed back by the Jelly Fish if you don't shoot fast enough. If you lose all 5 lives, poor Pepe will have to start over again at the begining. Try to make it all the way to the treasure chest to win the game!
+Project description:  Final project that includes a player, Pepe, that can shoot bubbles at Jelly Fish (turn on sound to hear the bubbles!). Jelly Fish will explode upon contact with the bubbles and Pepe the Penguin will be pushed back by the Jelly Fish if you don't shoot fast enough. If you lose all 5 lives, poor Pepe will have to start over again at the begining. Try to make it all the way to the treasure chest! We wanted to have a notification for completing the game, but unfortunately we didn't have time to finish that up! 
 
 The easiest part of this project: Working with existing code.
 
 Added Features:
+	- AI with observer pattern.
 	- God mode that allows Pepe to not be impacted by the Jelly Fish. 
 	- Reset that allows a player to start over. 
 	- Shooting with space bar and exploding Jelly Fish. 
@@ -32,3 +33,5 @@ Sources for sprites/backgrounds:
 
 Other sources of help:
 	https://github.com/jakebesworth/Simple-SDL2-Audio was adapted to c++ for playing sound effects
+
+***Thank you Dr. Malloy for a great semester! We have had a great time creating this game and your class was a great way to end our time at Clemson! 

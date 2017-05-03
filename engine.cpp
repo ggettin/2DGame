@@ -202,7 +202,6 @@ void Engine::checkForCollisions(){
 			// delete sprite;
 		}
 		if( !e && player->collideWith(sprite) && !godMode){
-			std::cout << "Pepe got hurt" << '\n';
 			player->hurt();
 			if (player->getLives() == 0){
 
@@ -242,12 +241,10 @@ void Engine::play() {
           newGame = true;
           draw();
           clock.pause();
-          std::cout << "You're dead" << '\n';
 
 
 
           if (keystate[SDL_SCANCODE_R]){
-            std::cout << "Try again!" << '\n';
             //add code to reset
 				for(auto non : nontracker_sprite){
 					SmartSprite *temp = static_cast<SmartSprite*>( non );
@@ -283,7 +280,6 @@ void Engine::play() {
             hudOn = !hudOn;
         }
 		    if ( keystate[SDL_SCANCODE_G] ) {
-			      std::cout << "changing godmode" << '\n';
             godMode = !godMode;
         }
         if ( keystate[SDL_SCANCODE_R] ) {
@@ -342,7 +338,6 @@ void Engine::play() {
       }
 		if ( keystate[SDL_SCANCODE_SPACE] ) {
 			static_cast<SubjectSprite*>(sprites[0])->shoot();
-			 std::cout << "shooting" << std::endl;
 
        aud->playSound("sounds/fishbubbles.wav", SDL_MIX_MAXVOLUME / 2);
        //SDL_Delay(25);
