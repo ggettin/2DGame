@@ -284,8 +284,9 @@ void Engine::play() {
         }
         if ( keystate[SDL_SCANCODE_R] ) {
             
-
-
+          sprites[0]->reset();
+          clock.unpause();
+          newGame = false;
         }
 
         if ( keystate[SDL_SCANCODE_T] ) {

@@ -2,16 +2,19 @@ Name: Greg Gettings & Sydney Paul
 
 Clemson Email Address: ggettin@g.clemson.edu, sepaul@g.clemson.edu
 
-Project no: 4
+Project no: Final
 
-Project due date: Tuesday, April 4
+Project due date: Tuesday, May 2
 
-Project description:  Begin to build an actual game that includes a heads-up-display, a moving player object, and added depth with the painters algorithm.
+Project description:  Final project that includes a player, Pepe, that can shoot bubbles at Jelly Fish (turn on sound to hear the bubbles!). Jelly Fish will explode upon contact with the bubbles and Pepe the Penguin will be pushed back by the Jelly Fish if you don't shoot fast enough. If you lose all 5 lives, poor Pepe will have to start over again at the begining. Try to make it all the way to the treasure chest to win the game!
 
 The easiest part of this project: Working with existing code.
 
 Added Features:
-	- A bubble sound effect is played when b is pressed to spawn an user/XML defined number of bubbles. (audio class)
+	- God mode that allows Pepe to not be impacted by the Jelly Fish. 
+	- Reset that allows a player to start over. 
+	- Shooting with space bar and exploding Jelly Fish. 
+	- A bubble sound effect is played when b is pressed shoot. (audio class)
 	- Painters algorithm can be applied to multiple/any drawable class. Not just a single class. 
 	- modified constructors of all non-players to make locations and velocities random within the limits defined by the user in the XML and size of the world.
 
