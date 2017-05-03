@@ -249,6 +249,10 @@ void Engine::play() {
           if (keystate[SDL_SCANCODE_R]){
             std::cout << "Try again!" << '\n';
             //add code to reset
+				for(auto non : nontracker_sprite){
+					SmartSprite *temp = static_cast<SmartSprite*>( non );
+					temp->reset();
+				}
             sprites[0]->reset();
             clock.unpause();
             newGame = false;
