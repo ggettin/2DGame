@@ -249,6 +249,9 @@ void Engine::play() {
           if (keystate[SDL_SCANCODE_R]){
             std::cout << "Try again!" << '\n';
             //add code to reset
+            sprites[0]->reset();
+            clock.unpause();
+            newGame = false;
 
           }else if (keystate[SDL_SCANCODE_ESCAPE] || keystate[SDL_SCANCODE_Q]){
               done = true;
