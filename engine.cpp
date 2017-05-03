@@ -48,6 +48,7 @@ Engine::Engine() :
 	hud( new HUD()),
 	hudOn(true),
 	godMode(false),
+  newGame(false),
 	sprites(),
 	nontracker_sprite(),
 	//player("scuba"),
@@ -143,6 +144,14 @@ void Engine::draw() const {
 
   }
 
+  if(newGame){
+
+    std::stringstream strm;
+        strm.str(std::string());
+
+    strm << "You are out of lives!! Press R to restart or Q to quit!";
+    io.writeText(strm.str(), 200,250);
+  }
 
 
   for(auto* s : sprites) s->draw();
@@ -225,11 +234,33 @@ void Engine::play() {
   audio *aud = new audio();
 
   while ( !done ) {
+
+    if (sprites[0]->getLives() == 0){
+          newGame = true;
+          draw();
+          clock.pause();
+          std::cout << "You're dead" << '\n';
+
+          
+
+          if (keystate[SDL_SCANCODE_R]){
+            std::cout << "Try again!" << '\n';
+            //add code to reset
+
+          }else if (keystate[SDL_SCANCODE_ESCAPE] || keystate[SDL_SCANCODE_Q]){
+              done = true;
+              break;
+          }
+        
+        }
     while ( SDL_PollEvent(&event) ) {
+
 
       keystate = SDL_GetKeyboardState(NULL);
       if (event.type ==  SDL_QUIT) { done = true; break; }
+
       if(event.type == SDL_KEYDOWN) {
+
         if (keystate[SDL_SCANCODE_ESCAPE] || keystate[SDL_SCANCODE_Q]) {
           done = true;
           break;
@@ -241,9 +272,14 @@ void Engine::play() {
         if ( keystate[SDL_SCANCODE_F1] ) {
             hudOn = !hudOn;
         }
-		  if ( keystate[SDL_SCANCODE_G] ) {
-			  std::cout << "changing godmode" << '\n';
+		    if ( keystate[SDL_SCANCODE_G] ) {
+			      std::cout << "changing godmode" << '\n';
             godMode = !godMode;
+        }
+        if ( keystate[SDL_SCANCODE_R] ) {
+            
+
+
         }
 
         if ( keystate[SDL_SCANCODE_T] ) {
@@ -311,6 +347,7 @@ void Engine::play() {
         frameGen.makeFrame();
       }
     }
+
   }
 
 }

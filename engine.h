@@ -30,6 +30,7 @@ private:
   HUD *hud;
   bool hudOn;
   bool godMode;
+  bool newGame;
 
   std::vector<SubjectSprite*> sprites;
   std::vector<Drawable*> extras;
