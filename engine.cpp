@@ -48,7 +48,7 @@ Engine::Engine() :
 	hud( new HUD()),
 	hudOn(true),
 	godMode(false),
-  newGame(false),
+   newGame(false),
 	sprites(),
 	nontracker_sprite(),
 	//player("scuba"),
@@ -244,11 +244,15 @@ void Engine::play() {
           clock.pause();
           std::cout << "You're dead" << '\n';
 
-          
+
 
           if (keystate[SDL_SCANCODE_R]){
             std::cout << "Try again!" << '\n';
             //add code to reset
+				for(auto non : nontracker_sprite){
+					SmartSprite *temp = static_cast<SmartSprite*>( non );
+					temp->reset();
+				}
             sprites[0]->reset();
             clock.unpause();
             newGame = false;
@@ -257,7 +261,7 @@ void Engine::play() {
               done = true;
               break;
           }
-        
+
         }
     while ( SDL_PollEvent(&event) ) {
 
@@ -295,7 +299,7 @@ void Engine::play() {
 
         if ( keystate[SDL_SCANCODE_B] ) {
 
-          
+
 
 
           int additions = Gamedata::getInstance().getXmlInt("bubble/additions");

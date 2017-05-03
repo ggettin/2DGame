@@ -55,3 +55,12 @@ void SmartSprite::update(Uint32 ticks) {
     }
   }
 }
+
+void SmartSprite::reset(){
+	this->setPosition(Vector2f(Gamedata::getInstance().getRandInRange(
+							Gamedata::getInstance().getXmlInt(this->getName() + "/startLoc/X/min"),
+							Gamedata::getInstance().getXmlInt(this->getName() + "/startLoc/X/max")),
+					Gamedata::getInstance().getRandInRange(
+							Gamedata::getInstance().getXmlInt(this->getName() + "/startLoc/Y/min"),
+							Gamedata::getInstance().getXmlInt(this->getName() + "/startLoc/Y/max"))));
+}

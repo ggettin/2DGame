@@ -21,6 +21,7 @@ public:
   static void decrSafeDistance() { --safeDistance; }
   static float getSafeDistance() { return safeDistance; }
   void setPlayerPos(const Vector2f& p) { playerPos = p; }
+  void reset();
 
   bool collidedWith(const Drawable* d) const;
 
